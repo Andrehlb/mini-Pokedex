@@ -1,6 +1,5 @@
 <div align="center">
 
-<a href="README.md"><img src="https://img.shields.io/badge/🌎%20Português%20(Brasil)-primary?style=for-the-badge&logo=translate" alt="Português (Brasil)" height="40"/></a>
 <a href="README.en-US.md"><img src="https://img.shields.io/badge/🇺🇸%20English-en--US-blue?style=for-the-badge&logo=translate" alt="English" height="40"/></a>
 <a href="README.zh-CN.md"><img src="https://img.shields.io/badge/🇨🇳%20简体中文-zh--CN-orange?style=for-the-badge&logo=translate" alt="简体中文" height="40"/></a>
 
@@ -10,9 +9,9 @@
 
 # Mini-Pokedex (Android Nativo com Kotlin)
 
-A simple Pokedex app for Android, built with Kotlin, as the final project for the Venturus Native Android course. It features list/detail screens, search/filter functionality, and consumes the public [...]
+Um aplicativo simples de Pokédex para Android, desenvolvido em Kotlin, como projeto final do curso Venturus Native Android. Possui telas de lista e detalhes, funcionalidade de busca e filtro, e consome a PokéAPI pública.
 
-Este projeto está sendo desenvolvido seguindo as melhores práticas de mercado, incluindo um fluxo de trabalho baseado em Sprints e versionamento com Git, documentando a aplicação dos conceitos te�[...]
+Este projeto está sendo desenvolvido seguindo as melhores práticas de mercado, incluindo um fluxo de trabalho baseado em Sprints e versionamento com Git, documentando a aplicação dos conceitos teóricos e práticos aprendidos ao longo do curso.
 
 ---
 
