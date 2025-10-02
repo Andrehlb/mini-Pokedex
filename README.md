@@ -21,20 +21,20 @@ O objetivo desta Sprint é estabelecer a arquitetura base do projeto e implement
 * **Descrição:** Criação da tela de splash inicial, com temporizador para transição automática para a tela principal e gerenciamento correto do Back Stack.
 * **Conceitos Aplicados:**
     * Criação de `Activity`: **Aula 4 (25/09/2025) - Construindo o 1º App**.
-    * `Intent` Explícito: Para iniciar a `MainActivity` a partir da `SplashActivity`. [cite_start]Visto na **Aula 5 (30/09/2025) - App Navigation**[cite: 402].
-    * Gerenciamento de `Back Stack` com `finish()`: Para impedir que o usuário retorne à Splash Screen. [cite_start]Visto na **Aula 5 (30/09/2025) - App Navigation**[cite: 402].
+    * `Intent` Explícito: Para iniciar a `MainActivity` a partir da `SplashActivity`. Visto na **Aula 5 (30/09/2025) - App Navigation**.
+    * Gerenciamento de `Back Stack` com `finish()`: Para impedir que o usuário retorne à Splash Screen. Visto na **Aula 5 (30/09/2025) - App Navigation**.
 
 ### 🔲 Tarefa 2: Estrutura de Dados (`data class`) e Layout do Item da Lista
 * **Status:** Pendente
 * **Conceitos Planejados:**
-    * `data class`: Para modelar os dados de um Pokémon. [cite_start]Visto na **Aula 3 (18/09/2025) - POO**[cite: 400].
-    * `ConstraintLayout`: Para construir o layout de cada item da lista. [cite_start]Visto na **Aula 4 (25/09/2025) - Layouts**[cite: 401].
+    * `data class`: Para modelar os dados de um Pokémon. Visto na **Aula 3 (18/09/2025) - POO**.
+    * `ConstraintLayout`: Para construir o layout de cada item da lista. Visto na **Aula 4 (25/09/2025) - Layouts**.
 
 ### 🔲 Tarefa 3: Construção do `RecyclerView.Adapter`
 * **Status:** Pendente
 * **Conceitos Planejados:**
-    * `RecyclerView` e `Adapter`: Para exibir a lista de forma eficiente. [cite_start]Visto na **Aula 4 (25/09/2025) - Layouts**[cite: 401].
-    * `Funções de Ordem Superior (Lambda)`: Para tratar eventos de clique em cada item. [cite_start]Visto na **Aula 2 (11/09/2025) - Funções**[cite: 399].
+    * `RecyclerView` e `Adapter`: Para exibir a lista de forma eficiente. Visto na **Aula 4 (25/09/2025) - Layouts**.
+    * `Funções de Ordem Superior (Lambda)`: Para tratar eventos de clique em cada item. Visto na **Aula 2 (11/09/2025) - Funções**.
 
 ---
 
