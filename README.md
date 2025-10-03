@@ -1,9 +1,9 @@
-<div align="center">
+<p align="center">
 
 <a href="README.en-US.md"><img src="https://img.shields.io/badge/🇺🇸%20English-en--US-blue?style=for-the-badge&logo=translate" alt="English" height="40"/></a>
 <a href="README.zh-CN.md"><img src="https://img.shields.io/badge/🇨🇳%20简体中文-zh--CN-orange?style=for-the-badge&logo=translate" alt="简体中文" height="40"/></a>
 
-</div>
+</p>
 
 ---
 
@@ -23,7 +23,9 @@ O objetivo desta Sprint é estabelecer a arquitetura base do projeto e implement
 * **Status:** Concluída
 * **Descrição:** Configuração do repositório Git, criação da estrutura do projeto Android e habilitação de ferramentas essenciais para um desenvolvimento limpo e seguro.
 * **Conceitos Aplicados:**
-  * `View Binding`: Habilitado no `build.gradle.kts` para substituir `findViewById()` e garantir acesso type-safe às views, conforme abordado na **Aula 4 (25/09/2025) - Construindo o 1º App / View[...]
+```markdown
+  * `View Binding`: Habilitado em `build.gradle.kts` para substituir o uso de `findViewById()` e garantir acesso type-safe às views, conforme abordado na **Aula 4 (25/09/2025) - Construindo o 1º App / View Binding**.
+```
 
 ### ⏳ Tarefa 1: Implementação da `SplashActivity` e Navegação
 * **Status:** Em andamento
