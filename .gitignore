@@ -32,3 +32,8 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+# PDF files
+*.pdf
+Aula-Steff-02-10-2025-NavegacaoEntreTelas.pdf
+
