@@ -112,4 +112,5 @@ O objetivo desta Sprint é estabelecer a base arquitetural do app, dominar o cic
   **Aula X (DD/MM/AAAA) – Tema**
 - Marque dúvidas com `[REVISAR]` e referência ao PDF/anotação original.
 - Exemplo:  
-  `onSaveInstanceState: **Aula 6 (02/10/2025) – Ciclo de Vida e Persistência.** [REVISAR]`
+  `onSaveInstanceState:` 
+- **Aula 6 (02/10/2025) – Ciclo de Vida e Persistência.**
