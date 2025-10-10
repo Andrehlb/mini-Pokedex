@@ -6,6 +6,6 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 
-class splashActivity: AppCompactActivity() {
-    override fun onCreate(savedinstanceState: Bundle?)
+class SplashActivity: AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?)
 }
