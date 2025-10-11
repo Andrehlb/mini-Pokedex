@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "onCreate chamado")
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top*2, systemBars.right, systemBars.bottom)
+            v.setPadding(systemBars.left, systemBars.top*2, systemBars.right, systemBars.bottom*2)
             insets
         }
     }
