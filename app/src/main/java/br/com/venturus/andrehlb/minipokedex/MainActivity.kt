@@ -41,11 +41,6 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "onStop chamado")
     }
 
-    override fun onStop() {
-        super.onStop()
-        Log.d(TAG, "onStop chamado")
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         Log.d(TAG, "onDestroy chamado")
