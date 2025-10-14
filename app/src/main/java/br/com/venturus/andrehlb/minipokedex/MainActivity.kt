@@ -11,7 +11,7 @@ import br.com.venturus.andrehlb.minipokedex.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private val TAG = "MainActivity"
+    private val tag = "MainActivity"
     override fun onCreate(savedInstanceState: Bundle?) {
         // Installs the splash screen. This must be called before super.onCreate()
         installSplashScreen()
@@ -20,10 +20,10 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        Log.d(TAG, "onCreate chamado")
+        Log.d(tag, "onCreate chamado")
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            Log.d(TAG, "Padding aplicado")
+            Log.d(tag, "Padding aplicado")
             v.setPadding(
                 systemBars.left,
                 systemBars.top * 2,
@@ -36,30 +36,30 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        Log.d(TAG, "onStart chamado")
+        Log.d(tag, "onStart chamado")
     }
     override fun onResume() {
         super.onResume()
-        Log.d(TAG, "onResume chamado")
+        Log.d(tag, "onResume chamado")
     }
 
     override fun onPause() {
         super.onPause()
-        Log.d(TAG, "onPause chamado")
+        Log.d(tag, "onPause chamado")
     }
 
     override fun onStop() {
         super.onStop()
-        Log.d(TAG, "onStop chamado")
+        Log.d(tag, "onStop chamado")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.d(TAG, "onDestroy chamado")
+        Log.d(tag, "onDestroy chamado")
     }
 
     override fun onRestart() {
         super.onRestart()
-        Log.d(TAG, "onRestart chamado")
+        Log.d(tag, "onRestart chamado")
     }
 }
