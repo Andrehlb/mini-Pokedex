@@ -60,6 +60,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onRestart() {
         super.onRestart()
-        Log.d(tag, "onRestart chamado")
+        Log.d(tag, "onRestartn chamado")
     }
 }
