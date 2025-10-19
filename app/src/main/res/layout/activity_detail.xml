@@ -7,6 +7,14 @@
     tools:context=".DetailActivity">
 
     <!-- Componentes da tela de detalhes, ImageView para fotos e TextViews para detalhes-->
-
+    <ImageView
+        android:id="@+id/pokemon_image"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:contentDescription="@string/pokemon_image_description"
+        app:layout_constrainstTop_toTopof="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/placeholder_image" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
