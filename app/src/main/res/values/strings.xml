@@ -1,4 +1,5 @@
 <resources>
-    <string name="app_name">Mini Pokedex</string>
-    <string name="splash_image_description">Logo com a bola Pokédex sobre um fundo laranja, do aplicativo Mini Pokedex</string>
+    <string name="app_name">Mini Pokédex</string>
+    <string name="splash_image_description">Logo com a bola Pokédex sobre um fundo laranja, do aplicativo Mini Pokédex</string>
+    <string name="search_hint">Digite o nome do Pokémon</string>
 </resources>

@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         Log.d(tag, "onCreate chamado")
+        binding.searchEditText.requestFocus()
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             Log.d(tag, "Padding aplicado")
@@ -38,6 +39,7 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
         Log.d(tag, "onStart chamado")
     }
+
     override fun onResume() {
         super.onResume()
         Log.d(tag, "onResume chamado")
@@ -60,6 +62,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onRestart() {
         super.onRestart()
-        Log.d(tag, "onRestartn chamado")
+        Log.d(tag, "onRestart chamado")
     }
 }
