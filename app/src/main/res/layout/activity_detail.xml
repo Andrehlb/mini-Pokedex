@@ -17,4 +17,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:src="@drawable/placeholder_image" />
 
+    <TextView
+        android:id="@+id/pokemon_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/pokemon_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Nome do Pokémon" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
