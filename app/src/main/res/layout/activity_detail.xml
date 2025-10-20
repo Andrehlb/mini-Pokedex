@@ -28,6 +28,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="Nome do Pokémon" />
 
-
+    <TextView
+        android:id="@+id/pokemon_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/pokemon_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Tipo: Fogo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
