@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     app:cardCornerRadius="8dp"
-    app:cardElevation="4dp">
+    app:cardElevation="5dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,20 +15,21 @@
 
         <ImageView
             android:id="@+id/pokemon_item_image"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:contentDescription="@string/pokemon_image_description"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:srcCompat="@tools:sample/avatars"
-            android:contentDescription="Imagem do Pokémon" />
+            android:src="@drawable/placeholder_image" />
 
         <TextView
-            android:id="@+id/pokemon_item_name"
+            android:id="@+id/item_pokemon_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:textSize="20sp"
+            android:layout_marginStart="13dp"
+            android:textSize="21sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/pokemon_item_image"
             app:layout_constraintEnd_toEndOf="parent"
@@ -38,4 +39,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
