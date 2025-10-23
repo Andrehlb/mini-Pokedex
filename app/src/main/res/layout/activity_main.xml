@@ -39,6 +39,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:visibility="@{viewModel.isloading ? android.view.view.VISIBLE : android.view.View.GONE}" />
 
-
+        <TextView
+            android:id="@+id/textViewList"
+            android:layout_width=""wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/search_edit_text"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@{safeUnbox(viewModel.textList).toString()}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
