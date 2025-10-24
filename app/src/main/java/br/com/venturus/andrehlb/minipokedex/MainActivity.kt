@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main) // Data Biding
-        biding.lifecycleOwner = this // Para LiveData reagir ao ciclo de vida da Activity
+        binding.lifecycleOwner = this // Para LiveData reagir ao ciclo de vida da Activity
         viewModel = ViewModelProvider(this)[PokemonListViewModel::class.java] // Instância do ViewModel
         binding.viewModel = viewModel
 
