@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import br.com.venturus.andrehlb.minipokedex.databinding.ActivityMainBinding
 import br.com.venturus.andrehlb.minipokedex.viewmodel.PokemonListViewModel
+
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: PokemonListViewModel
