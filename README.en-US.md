@@ -9,107 +9,81 @@
 
 # Mini-Pokedex (Native Android with Kotlin)
 
-A simple Pokedex app for Android, developed in Kotlin as the final project for the Venturus Native Android course. It features list/detail screens, search/filter functionality, and consumes the public PokéAPI.
+A simple Pokedex app for Android, developed in Kotlin as the final project for the Venturus Native Android course. The project consumes the public PokéAPI and features list/detail screens with search functionality.
 
-This project is being developed following Android best practices, with sprints, Git versioning, and incremental documentation of theoretical and practical concepts learned throughout the course.
+This project follows the **MVVM (Model-View-ViewModel)** architecture and Android development best practices, such as using **Jetpack components (ViewModel, LiveData, DataBinding, SplashScreen API)**, Git versioning, and incremental documentation.
 
 ---
 
-## Development Log - Sprint 1: Foundation, Lifecycle, and Initial Navigation
+## Development Log - Sprint 1: MVVM Architecture, Jetpack, and Basic UI
 
-The goal of this Sprint is to establish the project's architectural foundation, master the lifecycle of Activities and Fragments, implement navigation between screens (Single-Activity/Fragment Architecture with Navigation Component), and ensure state persistence during configuration changes.
+The goal of this Sprint is to establish the app's architectural foundation using MVVM, master lifecycle and state persistence with `ViewModel`, and build the initial UI with modern Jetpack components.
 
 ---
 
 ### ✅ Task 0: Environment and Project Setup
 * **Status:** Completed
-* **Subtasks:**
-  1. Create a GitHub repository with `README.md`, `.gitignore` (Android), and `LICENSE` (MIT).
-  2. Initialize the Android Studio project (`Empty Views Activity`).
-  3. Enable View Binding in `build.gradle.kts`.
-  4. Initial commit with the basic structure.
-* **Reference:**  
-  **Class 4 (09/25/2025) — Building the 1st App / View Binding**
-* **Expected Result:**  
-  Project compiles, runs, and the initial structure is versioned.
+* **Description:** Initial setup of the GitHub repository and the Android Studio project with basic dependencies.
 
 ---
 
 ### ✅ Task 1: Understanding and Visualizing the Activity Lifecycle
 * **Status:** Completed
-* **Description:** Implementation of logs (`Log.d`) in all lifecycle methods (`onCreate`, `onStart`, `onResume`, `onPause`, `onStop`, `onDestroy`, `onRestart`) in `MainActivity`. Running the app, analyzing logs in Logcat, and using Debug mode for practical understanding of the lifecycle.
-* **Applied Concepts:**
-  * Android Activity lifecycle methods and their calls, as covered in **Class 6 (10/02/2025) – Lifecycle and Debugging**.
+* **Description:** Implemented logs (`Log.d`) in all `MainActivity` lifecycle methods to analyze and debug the Activity's behavior.
 
 ---
 
-### ⏳ Task 2: Implementation of `SplashActivity` and Navigation
+### ✅ Task 2: Splash Screen Implementation (Modern Approach)
+* **Status:** Completed
+* **Description:** Instead of a manual `SplashActivity`, the Jetpack **`SplashScreen API`** was used. The setup was done via `installSplashScreen()` in `MainActivity`, which handles the transition automatically. This eliminates the need for explicit `Intent`s and Back Stack management with `finish()`.
+* **Applied Concepts:**
+  * `SplashScreen API`: A Jetpack library for a modern and efficient startup screen.
+
+---
+
+### ✅ Task 3: MVVM Architecture with ViewModel and Data Binding
+* **Status:** Completed
+* **Description:** Logic was moved from `MainActivity` to `PokemonListViewModel`. The `ViewModel` is now responsible for managing UI data and state. `DataBinding` was set up to connect the `activity_main.xml` layout directly to the `ViewModel`, allowing the UI to react to state changes (like `isLoading`).
+* **Applied Concepts:**
+  * **`ViewModel`**: To manage UI-related data and survive configuration changes (replacing `onSaveInstanceState`).
+  * **`DataBinding`**: To declaratively bind UI (XML) to data logic (ViewModel).
+  * **`LiveData`**: To create observable data streams that the UI can consume.
+
+---
+
+### ⏳ Task 4: UI Structure with RecyclerView
 * **Status:** In progress
-* **Description:** Creation of the splash screen, with a timer for automatic transition to the main screen and correct Back Stack management.
-* **Applied Concepts:**
-  * Creating `Activity`: **Class 4 (09/25/2025) - Building the 1st App**.
-  * Explicit `Intent`: To start `MainActivity` from `SplashActivity`. Covered in **Class 5 (09/30/2025) - App Navigation**.
-  * Back Stack management with `finish()`: To prevent the user from returning to the Splash Screen. Covered in **Class 5 (09/30/2025) - App Navigation**.
-
----
-
-### ⏳ Task 3: Saving and Restoring State (onSaveInstanceState/Bundle)
-* **Status:** In progress
-* **Description:** Implement state persistence during configuration changes (e.g., screen rotation), using `onSaveInstanceState` and `Bundle` to save/restore important variable states.
-* **Applied Concepts:**
-  * State persistence in Activities.
-  * Use of Bundle and lifecycle methods to save/restore data.
-  * **Class 6 (10/02/2025) – Lifecycle, State, and Debugging**
-
----
-
-### 🔲 Task 4: Single-Activity Architecture, Fragments, and Navigation Component
-* **Status:** Pending
-* **Description:** Migrate navigation to a Fragment-based architecture, create and configure the Navigation Component, implement safe navigation between screens, and advanced Back Stack control.
-* **Planned Concepts:**
-  * Fragment lifecycle (`onCreate`, `onCreateView`, `onViewCreated`, `onDestroyView`)
-  * Use of the Navigation Component (`nav_graph.xml`, actions, Safe Args, popUpTo)
-  * **Class 6 (10/02/2025) – Fragments and Advanced Navigation**
-
----
-
-### 🔲 Task 5: Data Structure, Layouts, and Adapter
-* **Status:** Pending
-* **Planned Concepts:**
-  * `data class`: To model Pokémon data. Covered in **Class 3 (09/18/2025) - OOP**.
-  * `ConstraintLayout`: To build the layout for each list item. Covered in **Class 4 (09/25/2025) - Layouts**.
+* **Description:** The layout for an individual list item (`item_pokemon.xml`) has been created using `CardView` and `ConstraintLayout`. The next step is to add the `RecyclerView` to `activity_main.xml` and create the `PokemonAdapter` to manage the list display.
+* **Applied/Planned Concepts:**
   * `RecyclerView` and `Adapter`: For efficient list display.
-  * Higher-Order Functions (Lambda): To handle click events on each item.
-  * **Class 2 (09/11/2025) - Functions**
+  * `ViewHolder`: A pattern to manage the views for each item.
+
+---
+
+### 🔲 Task 5: Navigation and Data Layer
+* **Status:** Pending
+* **Description:** Implement navigation from `MainActivity` to `DetailActivity` upon clicking a list item. Build the data layer with `Repository` and `Retrofit` to consume the PokéAPI.
+* **Planned Concepts:**
+  * `Repository Pattern`: To manage data sources (network and local cache).
+  * `Retrofit` & `Coroutines`: To perform network calls asynchronously.
+  * `Intent` with `extras`: To pass data (like the Pokémon ID) between Activities.
 
 ---
 
 ## 🛠 Technologies and Libraries
 
 * **Language:** Kotlin
-* **Architecture:** MVVM (to be implemented)
+* **Architecture:** **MVVM (in implementation)**
 * **Android Jetpack Libraries:**
+  * **ViewModel (Implemented)**
+  * **DataBinding (Implemented)**
+  * **SplashScreen API (Implemented)**
   * View Binding
-  * Navigation Component (to be implemented)
-  * ViewModel (to be implemented)
-  * RecyclerView
+  * RecyclerView (in implementation)
 * **Networking:** Retrofit & Coroutines (to be implemented)
-* **Images:** Coil/Glide (to be implemented)
 
 ---
 
 ## Notes
 
-- [REVIEW] Points marked as “XXX” or doubts in class notes should be clarified before moving on to the next Sprint.
-- TODO: Start API integration and instrumented tests in a future Sprint.
-- Always ensure the app compiles, runs, and logs correctly before each commit.
-
----
-
-## Reference Standard for Class/Content Citations
-
-- Always cite:  
-  **Class X (MM/DD/YYYY) – Topic**
-- Mark doubts with `[REVIEW]` and reference the original PDF/note.
-- Example:  
-  `onSaveInstanceState: **Class 6 (10/02/2025) – Lifecycle and State Persistence.** [REVIEW]`
+- The use of `ViewModel` replaces the need to manually save and restore state with `onSaveInstanceState` and `Bundle` for complex and long-lived data.
