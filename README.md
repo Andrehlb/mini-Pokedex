@@ -9,108 +9,81 @@
 
 # Mini-Pokedex (Android Nativo com Kotlin)
 
-Um aplicativo simples de Pokédex para Android, desenvolvido em Kotlin como projeto final do curso Venturus Native Android. Possui telas de lista e detalhes, busca, filtro e consome a PokéAPI pública.
+Um aplicativo simples de Pokédex para Android, desenvolvido em Kotlin como projeto final do curso Venturus Native Android. O projeto consome a PokéAPI pública e apresenta telas de lista e detalhes com busca.
 
-O projeto segue as melhores práticas de desenvolvimento Android, organizando etapas em Sprints, versionamento Git e documentação incremental dos aprendizados teóricos e práticos ao longo do curso.
+O projeto segue a arquitetura **MVVM (Model-View-ViewModel)** e as melhores práticas de desenvolvimento Android, como o uso de componentes **Jetpack (ViewModel, LiveData, DataBinding, SplashScreen API)**, versionamento Git e documentação incremental.
 
 ---
 
-## Development Log - Sprint 1: Fundação, Ciclo de Vida e Navegação Inicial
+## Development Log - Sprint 1: Arquitetura MVVM, Jetpack e UI Básica
 
-O objetivo desta Sprint é estabelecer a base arquitetural do app, dominar o ciclo de vida de Activities e Fragments, implementar navegação entre telas (Single-Activity/Fragment Architecture com Navigation Component) e garantir persistência de estado durante mudanças de configuração.
+O objetivo desta Sprint é estabelecer a base arquitetural do app usando MVVM, dominar o ciclo de vida e a persistência de estado com `ViewModel`, e construir a UI inicial com componentes modernos do Jetpack.
 
 ---
 
 ### ✅ Tarefa 0: Configuração do Ambiente e Projeto
 * **Status:** Concluída
-* **Sub-tarefas:**
-  1. Criar repositório GitHub com `README.md`, `.gitignore` (Android) e `LICENSE` (MIT).
-  2. Inicializar projeto Android Studio (Empty Views Activity).
-  3. Habilitar View Binding em `build.gradle.kts`.
-  4. Commit inicial da estrutura.
-* **Referência:**  
-  **Aula 4 (25/09/2025) — Construindo o 1º App / View Binding**
-* **Resultado Esperado:**  
-  Projeto compila, roda e estrutura inicial está versionada.
+* **Descrição:** Configuração inicial do repositório no GitHub e do projeto no Android Studio com as dependências básicas.
 
 ---
 
 ### ✅ Tarefa 1: Compreensão e Visualização do Ciclo de Vida da Activity
 * **Status:** Concluída
-* **Descrição:** Implementação de logs (`Log.d`) em todos os métodos do ciclo de vida (`onCreate`, `onStart`, `onResume`, `onPause`, `onStop`, `onDestroy`, `onRestart`) na `MainActivity`. Execução do app, análise dos logs no Logcat e uso do modo Debug para compreensão prática do ciclo de vida.
-* **Conceitos Aplicados:**
-  * Ciclo de vida de `Activity` no Android: métodos principais e suas chamadas, conforme **Aula 6 (02/10/2025) – Ciclo de Vida e Depuração**.
+* **Descrição:** Implementação de logs (`Log.d`) em todos os métodos do ciclo de vida na `MainActivity` para análise e depuração do comportamento da Activity.
 
 ---
 
-### ⏳ Tarefa 2: Implementação da `SplashActivity` e Navegação
+### ✅ Tarefa 2: Implementação da Splash Screen (Abordagem Moderna)
+* **Status:** Concluída
+* **Descrição:** Em vez de uma `SplashActivity` manual, foi utilizada a **`SplashScreen API`** do Jetpack. A configuração foi feita via `installSplashScreen()` na `MainActivity`, que gerencia a transição automaticamente. Isso elimina a necessidade de `Intent` explícito e gerenciamento de `Back Stack` com `finish()`.
+* **Conceitos Aplicados:**
+  * `SplashScreen API`: Biblioteca do Android Jetpack para uma tela de inicialização moderna e eficiente.
+
+---
+
+### ✅ Tarefa 3: Arquitetura MVVM com ViewModel e Data Binding
+* **Status:** Concluída
+* **Descrição:** A lógica foi movida da `MainActivity` para o `PokemonListViewModel`. O `ViewModel` agora é responsável por gerenciar os dados e o estado da UI. O `DataBinding` foi configurado para conectar o layout `activity_main.xml` diretamente ao `ViewModel`, permitindo que a UI reaja a mudanças de estado (como `isLoading`).
+* **Conceitos Aplicados:**
+  * **`ViewModel`**: Para gerenciar dados de UI e sobreviver a mudanças de configuração (substituindo o `onSaveInstanceState`).
+  * **`DataBinding`**: Para vincular a UI (XML) à lógica de dados (ViewModel) de forma declarativa.
+  * **`LiveData`**: Para criar fluxos de dados observáveis que a UI pode consumir.
+
+---
+
+### ⏳ Tarefa 4: Estrutura da UI com RecyclerView
 * **Status:** Em andamento
-* **Descrição:** Criação da tela de splash inicial, com temporizador para transição automática para a tela principal e gerenciamento correto do Back Stack.
-* **Conceitos Aplicados:**
-  * Criação de `Activity`: **Aula 4 (25/09/2025) - Construindo o 1º App**.
-  * `Intent` Explícito: Para iniciar a `MainActivity` a partir da `SplashActivity`. Visto na **Aula 5 (30/09/2025) - App Navigation**.
-  * Gerenciamento de `Back Stack` com `finish()`: Para impedir que o usuário retorne à Splash Screen. Visto na **Aula 5 (30/09/2025) - App Navigation**.
-
----
-
-### ⏳ Tarefa 3: Salvando e Restaurando Estado (onSaveInstanceState/Bundle)
-* **Status:** Em andamento
-* **Descrição:** Implementar persistência de dados durante mudanças de configuração (por exemplo, ao girar a tela), usando `onSaveInstanceState` e `Bundle` para salvar/restaurar o estado de variáveis importantes.
-* **Conceitos Aplicados:**
-  * Persistência de estado em Activities.
-  * Uso de Bundle e métodos do ciclo de vida para salvar/restaurar dados.
-  * **Aula 6 (02/10/2025) – Ciclo de Vida, Estado e Debug**
-
----
-
-### 🔲 Tarefa 4: Arquitetura Single-Activity, Fragments e Navigation Component
-* **Status:** Pendente
-* **Descrição:** Migrar a navegação para arquitetura baseada em Fragments, criar e configurar o Navigation Component, implementar navegação segura entre telas e controle avançado do Back Stack.
-* **Conceitos Planejados:**
-  * Ciclo de vida do Fragment (`onCreate`, `onCreateView`, `onViewCreated`, `onDestroyView`)
-  * Uso do Navigation Component (`nav_graph.xml`, ações, Safe Args, popUpTo)
-  * **Aula 6 (02/10/2025) – Fragments e Navegação Avançada**
-
----
-
-### 🔲 Tarefa 5: Estrutura de Dados, Layouts e Adapter
-* **Status:** Pendente
-* **Conceitos Planejados:**
-  * `data class`: Para modelar os dados de um Pokémon. Visto na **Aula 3 (18/09/2025) - POO**.
-  * `ConstraintLayout`: Para construir o layout de cada item da lista. Visto na **Aula 4 (25/09/2025) - Layouts**.
+* **Descrição:** O layout para um item individual da lista (`item_pokemon.xml`) foi criado usando `CardView` e `ConstraintLayout`. O próximo passo é adicionar o `RecyclerView` em `activity_main.xml` e criar o `PokemonAdapter` para gerenciar a exibição da lista de Pokémons.
+* **Conceitos Aplicados/Planejados:**
   * `RecyclerView` e `Adapter`: Para exibir a lista de forma eficiente.
-  * `Funções de Ordem Superior (Lambda)`: Para tratar eventos de clique em cada item.
-  * **Aula 2 (11/09/2025) - Funções**
+  * `ViewHolder`: Padrão para gerenciar as views de cada item.
+
+---
+
+### 🔲 Tarefa 5: Navegação e Camada de Dados
+* **Status:** Pendente
+* **Descrição:** Implementar a navegação da `MainActivity` para a `DetailActivity` ao clicar em um item da lista. Construir a camada de dados com `Repository` e `Retrofit` para consumir a PokéAPI.
+* **Conceitos Planejados:**
+  * `Repository Pattern`: Para gerenciar as fontes de dados (rede e cache local).
+  * `Retrofit` e `Coroutines`: Para realizar as chamadas de rede de forma assíncrona.
+  * `Intent` com `extras`: Para passar dados (como o ID do Pokémon) entre as Activities.
 
 ---
 
 ## 🛠 Tecnologias e Bibliotecas
 
 * **Linguagem:** Kotlin
-* **Arquitetura:** MVVM (a ser implementado)
+* **Arquitetura:** **MVVM (em implementação)**
 * **Bibliotecas Android Jetpack:**
+  * **ViewModel (Implementado)**
+  * **DataBinding (Implementado)**
+  * **SplashScreen API (Implementado)**
   * View Binding
-  * Navigation Component (a ser implementado)
-  * ViewModel (a ser implementado)
-  * RecyclerView
+  * RecyclerView (em implementação)
 * **Rede:** Retrofit & Coroutines (a ser implementado)
-* **Imagens:** Coil/Glide (a ser implementado)
 
 ---
 
 ## Observações
 
-- [REVISAR] Pontos marcados como “XXX” ou dúvidas nas anotações da aula devem ser esclarecidos antes de avançar para a próxima Sprint.
-- TODO: Iniciar integração com API e testes instrumentados em Sprint futura.
-- Sempre validar se o app compila, executa e loga corretamente antes de cada commit.
-
----
-
-## Padronização de Referências de Aula/Conteúdo
-
-- Cite sempre:  
-  **Aula X (DD/MM/AAAA) – Tema**
-- Marque dúvidas com `[REVISAR]` e referência ao PDF/anotação original.
-- Exemplo:  
-  `onSaveInstanceState:` 
-- **Aula 6 (02/10/2025) – Ciclo de Vida e Persistência.**
+- O uso de `ViewModel` substitui a necessidade de salvar e restaurar estado manualmente com `onSaveInstanceState` e `Bundle` para dados complexos e de longa duração.
