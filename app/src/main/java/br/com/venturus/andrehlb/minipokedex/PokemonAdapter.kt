@@ -18,4 +18,14 @@ class PokemonAdapter : ListAdapter<Pokemon, PokemonAdapter.PokemonViewHolder>(Di
         }
     }
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonViewHolder {
+        val binding = ItemPokemonBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return PokemonViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: PokemonViewHolder, position: Int) {
+        holder.bind(getItem(position))
+    }
+
+
 }
