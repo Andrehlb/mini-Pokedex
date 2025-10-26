@@ -28,7 +28,7 @@ class PokemonAdapter : ListAdapter<Pokemon, PokemonAdapter.PokemonViewHolder>(Di
     }
 
     companion object {
-        private val DiffCallback = objetct : DiffUtil.ItemCallback<Pokemon>() {
+        private val DiffCallback = object : DiffUtil.ItemCallback<Pokemon>() {
             override fun areItemsTheSame(oldItem: Pokemon, newItem: Pokemon) = oldItem.id == newItem.id
             override fun areContentsTheSame(oldItem: Pokemon, newItem: Pokemon) = oldItem == newItem
         }
