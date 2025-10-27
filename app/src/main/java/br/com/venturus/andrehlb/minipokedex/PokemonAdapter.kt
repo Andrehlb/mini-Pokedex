@@ -13,8 +13,8 @@ class PokemonAdapter : ListAdapter<Pokemon, PokemonAdapter.PokemonViewHolder>(Di
 
     class PokemonViewHolder(private val binding: ItemPokemonBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(pokemon: Pokemon) {
-            binding.pokemonName.text = pokemon.name
-            // serão adicionados mais bindings aqui futuramente
+            binding.pokemon = pokemon
+            binding.executePendingBindings()
         }
     }
 
