@@ -9,81 +9,46 @@
 
 # Mini-Pokedex (Native Android with Kotlin)
 
-A simple Pokedex app for Android, developed in Kotlin as the final project for the Venturus Native Android course. The project consumes the public PokéAPI and features list/detail screens with search functionality.
+A simple Pokedex app for Android, developed in Kotlin as the final project for the Venturus Native Android course. The project consumes the public PokéAPI and features list and detail screens with search, filters, Lottie animations, and basic offline support.
 
-This project follows the **MVVM (Model-View-ViewModel)** architecture and Android development best practices, such as using **Jetpack components (ViewModel, LiveData, DataBinding, SplashScreen API)**, Git versioning, and incremental documentation.
-
----
-
-## Development Log - Sprint 1: MVVM Architecture, Jetpack, and Basic UI
-
-The goal of this Sprint is to establish the app's architectural foundation using MVVM, master lifecycle and state persistence with `ViewModel`, and build the initial UI with modern Jetpack components.
+The project follows the **MVVM** architecture and best practices, such as Jetpack (ViewModel, LiveData, DataBinding, SplashScreen API, Room, WorkManager), coroutines, Retrofit, and Lottie for animations.
 
 ---
 
-### ✅ Task 0: Environment and Project Setup
-* **Status:** Completed
-* **Description:** Initial setup of the GitHub repository and the Android Studio project with basic dependencies.
+## Development Log - Updated Sprints (based on review 10/30/2025)
 
----
+Objective: Mandatory (animated splash, RecyclerView list + image/name, search/filters for types/generations, details with name/ID/image/types/height/weight/stats) + viable extras (offline sync, Pokéball animation, social share).
 
-### ✅ Task 1: Understanding and Visualizing the Activity Lifecycle
-* **Status:** Completed
-* **Description:** Implemented logs (`Log.d`) in all `MainActivity` lifecycle methods to analyze and debug the Activity's behavior.
+### Sprint 1: Foundation and Visual Structure (Completed)
+* **Description:** Base, modern splash, layouts, Intent navigation.
+* **Concepts:** Lifecycle, Constraint/Recycler layouts.
 
----
+### Sprint 2: UI Layer and Reactive State (In Progress)
+* **Description:** MVVM ViewModels, LiveData observers, RecyclerView with fake data, coroutines fetch.
+* **Concepts:** UI architecture, lambda callbacks.
 
-### ✅ Task 2: Splash Screen Implementation (Modern Approach)
-* **Status:** Completed
-* **Description:** Instead of a manual `SplashActivity`, the Jetpack **`SplashScreen API`** was used. The setup was done via `installSplashScreen()` in `MainActivity`, which handles the transition automatically. This eliminates the need for explicit `Intent`s and Back Stack management with `finish()`.
-* **Applied Concepts:**
-  * `SplashScreen API`: A Jetpack library for a modern and efficient startup screen.
+### Sprint 3: Persistence, Animations, and Advanced UI (Next Focus)
+* **Description:** Room DAO/Repo, Lottie Pokéball splash/loading, combined filters/search, offline cache.
+* **Concepts:** Asynchronous Room/WorkManager, animations.
 
----
+### Sprint 4: Data and Network Layer
+* **Description:** Retrofit PokeAPI, Room sync, connection check.
+* **Concepts:** Network with coroutines.
 
-### ✅ Task 3: MVVM Architecture with ViewModel and Data Binding
-* **Status:** Completed
-* **Description:** Logic was moved from `MainActivity` to `PokemonListViewModel`. The `ViewModel` is now responsible for managing UI data and state. `DataBinding` was set up to connect the `activity_main.xml` layout directly to the `ViewModel`, allowing the UI to react to state changes (like `isLoading`).
-* **Applied Concepts:**
-  * **`ViewModel`**: To manage UI-related data and survive configuration changes (replacing `onSaveInstanceState`).
-  * **`DataBinding`**: To declaratively bind UI (XML) to data logic (ViewModel).
-  * **`LiveData`**: To create observable data streams that the UI can consume.
-
----
-
-### ⏳ Task 4: UI Structure with RecyclerView
-* **Status:** In progress
-* **Description:** The layout for an individual list item (`item_pokemon.xml`) has been created using `CardView` and `ConstraintLayout`. The next step is to add the `RecyclerView` to `activity_main.xml` and create the `PokemonAdapter` to manage the list display.
-* **Applied/Planned Concepts:**
-  * `RecyclerView` and `Adapter`: For efficient list display.
-  * `ViewHolder`: A pattern to manage the views for each item.
-
----
-
-### 🔲 Task 5: Navigation and Data Layer
-* **Status:** Pending
-* **Description:** Implement navigation from `MainActivity` to `DetailActivity` upon clicking a list item. Build the data layer with `Repository` and `Retrofit` to consume the PokéAPI.
-* **Planned Concepts:**
-  * `Repository Pattern`: To manage data sources (network and local cache).
-  * `Retrofit` & `Coroutines`: To perform network calls asynchronously.
-  * `Intent` with `extras`: To pass data (like the Pokémon ID) between Activities.
+### Sprint 5: Extras and Polishing (Optional)
+* **Description:** AR-lite selfie (CameraX/Gemini), WorkManager notifications, share Intent, tests.
+* **Concepts:** Background tasks, AI APIs.
 
 ---
 
 ## 🛠 Technologies and Libraries
 
 * **Language:** Kotlin
-* **Architecture:** **MVVM (in implementation)**
-* **Android Jetpack Libraries:**
-  * **ViewModel (Implemented)**
-  * **DataBinding (Implemented)**
-  * **SplashScreen API (Implemented)**
-  * View Binding
-  * RecyclerView (in implementation)
-* **Networking:** Retrofit & Coroutines (to be implemented)
+* **Architecture:** MVVM
+* **Jetpack:** ViewModel/LiveData/DataBinding/SplashScreen/Room/Navigation/RecyclerView/WorkManager
+* **Asynchrony:** Coroutines
+* **Network:** Retrofit/Coil
+* **Animations:** Lottie
+* **Others:** KSP (Room)
 
 ---
-
-## Notes
-
-- The use of `ViewModel` replaces the need to manually save and restore state with `onSaveInstanceState` and `Bundle` for complex and long-lived data.
