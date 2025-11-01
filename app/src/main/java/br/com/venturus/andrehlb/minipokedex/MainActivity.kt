@@ -23,15 +23,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main) // Data Biding
-
+        // Conecta o ciclo de vida da Activity para que o LiveData na UI seja usado de forma automática.
+        binding.lifecycleOwner = this
         // Instanciação do ViewModel
         viewModel = ViewModelProvider(this)[PokemonListViewModel::class.java]
-
         // Conexão da ViewModel com a variável <data> no XML.
         binding.viewModel = viewModel
 
-        // Conecta o ciclo de vida da Activity para que o LiveData n UI seja usado de forma automática.
-        binding.lifecycleOwner = this
+        val adapter = PokemonAdapter()
+        binding.pokemonRecyclerView.adapter = adapter
+
+        viewModel.pokemonList.observe(this) { pokemonList ->
+            adapter.submitList(pokemonList) // Atualiza a lista do adaptador quando os dados mudam
+        }
 
         Log.d(tag, "onCreate chamado")
         binding.searchEditText.requestFocus()
