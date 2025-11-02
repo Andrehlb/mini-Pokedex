@@ -9,7 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import android.recyclerview.widgrt.LinearLayoutManager
+import android.recyclerview.widget.LinearLayoutManager
 import br.com.venturusandrehlb.minipokedex.adapter.PokemonAdapter
 import br.com.venturus.andrehlb.minipokedex.databinding.ActivityMainBinding
 import br.com.venturus.andrehlb.minipokedex.model.Pokemon
@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         installSplashScreen()
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main) // Data Biding
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main) // Data Binding
         // Conecta o ciclo de vida da Activity para que o LiveData na UI seja usado de forma automática.
         binding.lifecycleOwner = this
         // Instanciação do ViewModel
@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.getPokemonList()
 
         Log.d(tag, "onCreate chamado")
-        biding.searchEditText.requestFocus()
+        binding.searchEditText.requestFocus()
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
