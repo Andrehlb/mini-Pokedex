@@ -38,9 +38,12 @@ class MainActivity : AppCompatActivity() {
         binding.pokemonRecyclerView.adapter = adapter
         binding.pokemonRecyclerView.layoutManager  = LinearLayoutManager(this)
 
-        viewModel.pokemonList.observe(this) { pokemonList ->
+        // Observer da lista de Pokémon
+        viewModel.pokemonList.observe(this) { pokemonList: List<Pokemon> ->
             adapter.submitList(pokemonList) // Atualiza a lista do adaptador quando os dados mudam
         }
+
+
 
         Log.d(tag, "onCreate chamado")
         binding.searchEditText.requestFocus()
