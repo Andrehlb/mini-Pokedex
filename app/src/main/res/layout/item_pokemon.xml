@@ -33,7 +33,6 @@
                 android:text="@{pokemon.name}"
                 android:textSize="18sp"
                 app:layout_constraintStart_toEndOf="@id/tvId"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginStart="8dp" />
 
