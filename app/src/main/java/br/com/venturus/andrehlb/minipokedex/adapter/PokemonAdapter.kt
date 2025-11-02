@@ -13,9 +13,21 @@ class PokemonAdapter : ListAdapter<Pokemon, PokemonAdapter.PokemonViewHolder>(Po
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonViewHolder {
         val binding = ItemPokemonBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return PokemonViewHolder(binding)
-
     }
 
-}
+    override fun onBidingViewHolder(holder: PokemonViewHolder, position: Int) {
+        holder.bind(getItem(position))
+    }
 
-    )
+    class PokemonViewHolder(private val binding: ItemPokemonBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(pokemon: Pokemon) {
+            binding.pokemon = pokemon
+            binding.executePendingBindings()
+        }
+    }
+
+    class PokemonDiffCallback : DiffUtil.ItemCallback<Pokemon>() {
+        override fun areItemsTheSame(oldItem: Pokemon, newItem: Pokemon): Boolean = oldItem.id == newItem.id
+        override fun areContentsTheSame(oldItem: Pokemon, newItem: Pokemon): Boolean = oldItem == newItem
+    }
+}
