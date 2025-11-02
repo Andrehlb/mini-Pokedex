@@ -66,5 +66,8 @@ dependencies {
 
     // Coil (imagens)
     implementation("io.coil-kt:coil:2.7.0")
+
+    // RecyclerView
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
 }
 
