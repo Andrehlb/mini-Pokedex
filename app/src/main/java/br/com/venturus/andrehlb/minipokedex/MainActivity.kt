@@ -9,6 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import android.recyclerview.widgrt.LinearLayoutManager
 import br.com.venturus.andrehlb.minipokedex.databinding.ActivityMainBinding
 import br.com.venturus.andrehlb.minipokedex.viewmodel.PokemonListViewModel
 
