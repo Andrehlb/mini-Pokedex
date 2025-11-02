@@ -1,6 +1,6 @@
 package br.com.venturus.andrehlb.minipokedex.adapter
 
-import android.view.LatoutInflater
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -15,7 +15,7 @@ class PokemonAdapter : ListAdapter<Pokemon, PokemonAdapter.PokemonViewHolder>(Po
         return PokemonViewHolder(binding)
     }
 
-    override fun onBidingViewHolder(holder: PokemonViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PokemonViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 
