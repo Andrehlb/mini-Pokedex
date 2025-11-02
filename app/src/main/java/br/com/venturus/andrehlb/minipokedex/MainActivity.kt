@@ -36,17 +36,24 @@ class MainActivity : AppCompatActivity() {
         // Configuração do RecyclerView
         val adapter = PokemonAdapter()
         binding.pokemonRecyclerView.adapter = adapter
-        binding.pokemonRecyclerView.layoutManager  = LinearLayoutManager(this)
+        binding.pokemonRecyclerView.layoutManager = LinearLayoutManager(this)
 
         // Observer da lista de Pokémon
         viewModel.pokemonList.observe(this) { pokemonList: List<Pokemon> ->
             adapter.submitList(pokemonList) // Atualiza a lista do adaptador quando os dados mudam
         }
 
+        // Observer do loading (ProgressBar)
+        viewModel.isloading.observe(this) { isLoading: Boolean ->
+            binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        }
 
+        // Inicia a busca de dados (fake ou API)
+        viewModel.getPokemonList()
 
         Log.d(tag, "onCreate chamado")
-        binding.searchEditText.requestFocus()
+        biding.searchEditText.requestFocus()
+
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             Log.d(tag, "Padding aplicado")
@@ -58,35 +65,5 @@ class MainActivity : AppCompatActivity() {
             )
             insets
         }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        Log.d(tag, "onStart chamado")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d(tag, "onResume chamado")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d(tag, "onPause chamado")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d(tag, "onStop chamado")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d(tag, "onDestroy chamado")
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-        Log.d(tag, "onRestart chamado")
     }
 }
