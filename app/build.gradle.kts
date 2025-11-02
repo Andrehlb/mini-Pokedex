@@ -69,5 +69,8 @@ dependencies {
 
     // RecyclerView
     implementation("androidx.recyclerview:recyclerview:1.3.2")
+
+    // DataBinding
+    implementation("androidx.databinding:databinding-runtime:8.5.0")
 }
 
