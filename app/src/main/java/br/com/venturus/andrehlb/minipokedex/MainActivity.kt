@@ -33,6 +33,9 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[PokemonListViewModel::class.java]
         // Conexão da ViewModel com a variável <data> no XML.
         binding.viewModel = viewModel
+       // Inicia a busca de dados (fake ou API)
+        viewModel.getPokemonList()
+
 
         // Configuração do RecyclerView
         val adapter = PokemonAdapter()
