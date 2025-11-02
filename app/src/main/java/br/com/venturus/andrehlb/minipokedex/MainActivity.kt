@@ -33,8 +33,10 @@ class MainActivity : AppCompatActivity() {
         // Conexão da ViewModel com a variável <data> no XML.
         binding.viewModel = viewModel
 
+        // Configuração do RecyclerView
         val adapter = PokemonAdapter()
         binding.pokemonRecyclerView.adapter = adapter
+        binding.pokemonRecyclerView.layoutManager  = LinearLayoutManager(this)
 
         viewModel.pokemonList.observe(this) { pokemonList ->
             adapter.submitList(pokemonList) // Atualiza a lista do adaptador quando os dados mudam
