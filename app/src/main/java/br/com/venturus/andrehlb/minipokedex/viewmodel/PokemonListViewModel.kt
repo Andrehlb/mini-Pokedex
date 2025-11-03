@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.venturus.andrehlb.minipokedex.model.Pokemon
-import kotlinx.coroutines.delay
+import br.com.venturus.andrehlb.minipokedex.network.RetrofitClient
 import kotlinx.coroutines.launch
 
 class PokemonListViewModel : ViewModel() {
@@ -14,31 +14,27 @@ class PokemonListViewModel : ViewModel() {
 
     // Live Data para carregar o loading (ProgressBar)
     val isLoadingLiveData = MutableLiveData<Boolean>()
+    val errorMessage = MutableLiveData<String>()
 
-    /*
-     * Simulação de uma chamada de rede com delay de 2 segundos
-     * e insere na lista com dados fake
-     * /
-0    fun getPokemonList() {
-        viewModelScope.launch {
-            // 1. Mostra o loading
-            isLoading.value = true
-
-            // 2. Simula o delay da API
-            delay(2000)
-
-            // 3. Cria a lista fake
-            val fakeList = listOf(
-                Pokemon(1, "Bulbasaur"),
-                Pokemon(2, "Charmander"),
-                Pokemon(3, "Squirtle")
-                // Adicione mais Pokémon aqui
-            )
-
-            // 4. Atualiza o LiveData (UI observa e reage)
-            pokemonList.value = fakeList
-
-            // 5. Esconde o loading
+    fun getPokemonList() {
+          viewModelScope.launch {
+                 // Mostra o loading
+                 isLoading.value = true
+                 try {
+                     val response = RetrofitClient.pokemonService.getPokemonList()
+                     val pokemons = response.results.mapIndexed ( index, result ->
+                         val id = result.url
+                             .removeSuffix("/")
+                             .substringAfterLast("/")
+                             .toInt()
+                         val imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$id.png"
+                         Pokemon(id, result.name capitalize()), imageUrl)
+                     }
+                     pokemonList.value = pokemons
+                 } catch (e: Exception) {
+                     errorMessage.value = "Erro ao buscar Pokémon: ${e.message}"
+                 } finally {
+            // Esconde o loading
             isLoading.value = false
         }
     }
