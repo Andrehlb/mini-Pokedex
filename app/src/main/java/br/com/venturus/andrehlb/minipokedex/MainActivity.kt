@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.getPokemonList()
 
         viewModel.errorMessage.observe(this) { message ->
-            if (message != niull) {
+            if (message != null) {
                 Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
             }
         }
@@ -48,17 +48,14 @@ class MainActivity : AppCompatActivity() {
         binding.pokemonRecyclerView.layoutManager = LinearLayoutManager(this)
 
         // Observer da lista de Pokémon
-        viewModel.pokemonList.observe(this) { pokemonList: List<Pokemon> ->
+        viewModel.pokemonListLiveData.observe(this) { pokemonList: List <Pokemon> ->
             adapter.submitList(pokemonList) // Atualiza a lista do adaptador quando os dados mudam
         }
 
         // Observer do loading (ProgressBar)
-        viewModel.isloading.observe(this) { isLoading: Boolean ->
+        viewModel.isLoading.observe(this) { isLoading: Boolean ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
-
-        // Inicia a busca de dados (fake ou API)
-        viewModel.getPokemonList()
 
         Log.d(tag, "onCreate chamado")
         binding.searchEditText.requestFocus()

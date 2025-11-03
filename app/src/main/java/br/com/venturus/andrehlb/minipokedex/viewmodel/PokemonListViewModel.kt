@@ -29,7 +29,9 @@ class PokemonListViewModel : ViewModel() {
                              .substringAfterLast("/")
                              .toInt()
                          val imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$id.png"
-                         Pokemon(id, result.name.capitalize(), imageUrl)
+                         Pokemon(id, result.name.replaceFirstChar {
+                             if (it.islLowerCase()) it.litlecase(Locale.getDefault()) else it.toString()
+                         }
                      }
                      pokemonList.value = pokemons
                  } catch (e: Exception) {
