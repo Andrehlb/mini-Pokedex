@@ -14,7 +14,7 @@ class PokemonListViewModel : ViewModel() {
     val pokemonListLiveData = MutableLiveData<List<Pokemon>>()
 
     // Live Data para carregar o loading (ProgressBar)
-    val isLoadingLiveData = MutableLiveData<Boolean>()
+    val isLoading = MutableLiveData<Boolean>()
     val errorMessage = MutableLiveData<String>()
 
     fun getPokemonList() {
