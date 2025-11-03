@@ -21,7 +21,7 @@ class PokemonListViewModel : ViewModel() {
                  // Mostra o loading
                  isLoading.value = true
                  try {
-                     val response = RetrofitClient.pokemonService.getPokemonList()
+                     val response = RetrofitClient.pokeApiService.getPokemonList()
                      val pokemons = response.results.mapIndexed ( index, result ->
                          val id = result.url
                              .removeSuffix("/")
