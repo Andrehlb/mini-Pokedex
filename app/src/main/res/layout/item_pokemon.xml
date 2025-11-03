@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -16,6 +17,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/ivPokemon"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                app:imageUrl="@{pokemon.imageUrl}
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
 
             <TextView
                 android:id="@+id/tvId"
