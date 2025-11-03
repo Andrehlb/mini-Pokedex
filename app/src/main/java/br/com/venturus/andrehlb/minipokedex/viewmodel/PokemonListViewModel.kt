@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import br.com.venturus.andrehlb.minipokedex.model.Pokemon
 import br.com.venturus.andrehlb.minipokedex.network.RetrofitClient
 import kotlinx.coroutines.launch
+import java.util.Locale
 
 class PokemonListViewModel : ViewModel() {
 
@@ -28,7 +29,7 @@ class PokemonListViewModel : ViewModel() {
                              .substringAfterLast("/")
                              .toInt()
                          val imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$id.png"
-                         Pokemon(id, result.name capitalize()), imageUrl)
+                         Pokemon(id, result.name.capitalize(), imageUrl)
                      }
                      pokemonList.value = pokemons
                  } catch (e: Exception) {
