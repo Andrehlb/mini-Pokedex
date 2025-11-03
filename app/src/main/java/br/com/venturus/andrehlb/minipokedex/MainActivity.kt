@@ -36,6 +36,11 @@ class MainActivity : AppCompatActivity() {
        // Inicia a busca de dados (fake ou API)
         viewModel.getPokemonList()
 
+        viewModel.errorMessage.observe(this) { message ->
+            if (message != niull) {
+                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+            }
+        }
 
         // Configuração do RecyclerView
         val adapter = PokemonAdapter()
