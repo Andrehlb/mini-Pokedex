@@ -31,10 +31,8 @@ class MainActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         // Instanciação do ViewModel
         viewModel = ViewModelProvider(this)[PokemonListViewModel::class.java]
-        // Conexão da ViewModel com a variável <data> no XML.
-        binding.viewModel = viewModel
-       // Inicia a busca de dados (fake ou API)
-        viewModel.getPokemonList()
+        binding.viewModel = viewModel // Conexão da ViewModel com a variável <data> no XML.
+        viewModel.getPokemonList() // Inicia a busca de dados (fake ou API)
 
         viewModel.errorMessage.observe(this) { message ->
             if (message != null) {
