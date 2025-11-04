@@ -79,7 +79,3 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() { super.onDestroy(); Log.d(tag, "onDestroy chamado") }
     override fun onRestart() { super.onRestart(); Log.d(tag, "onRestart chamado") }
 }
-
-fun SplashScreen.Companion.installSplashScreen() {
-    TODO("Not yet implemented")
-}
