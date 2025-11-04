@@ -39,6 +39,11 @@ class MainActivity : AppCompatActivity() {
             adapter.submitList(pokemonList) // Atualiza a lista do adaptador quando os dados mudam
         }
 
+        // Observer do loading (ProgressBar)
+        viewModel.isLoading.observe(this) { isLoading: Boolean ->
+            binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        }
+
         viewModel.errorMessage.observe(this) { message ->
             if (message != null) {
                 Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
@@ -49,11 +54,6 @@ class MainActivity : AppCompatActivity() {
         val adapter = PokemonAdapter()
         binding.pokemonRecyclerView.adapter = adapter
         binding.pokemonRecyclerView.layoutManager = LinearLayoutManager(this)
-
-        // Observer do loading (ProgressBar)
-        viewModel.isLoading.observe(this) { isLoading: Boolean ->
-            binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
-        }
 
         Log.d(tag, "onCreate chamado")
         binding.searchEditText.requestFocus()
