@@ -56,7 +56,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         Log.d(tag, "onCreate chamado")
-        binding.searchEditText.requestFocus()
+        // Linha com requestFocus
+        binding.search_edit_text.requestFocus()
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
