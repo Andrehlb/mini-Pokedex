@@ -22,8 +22,7 @@ class MainActivity : AppCompatActivity() {
     private val tag = "MainActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        // Installs the splash screen. This must be called before super.onCreate()
-        SplashScreen.installSplashScreen()
+        val splashScreen = SplashScreen.installSplashScreen()
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main) // Data Binding
