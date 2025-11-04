@@ -22,7 +22,7 @@ class PokemonListViewModel : ViewModel() {
             isLoading.value = true
             try {
                 val response = RetrofitClient.pokeApiService.getPokemonList()
-                val pokemons = response.results.mapIndexed { index, result ->
+                val pokemons = response.results.map { result ->
                     val id = result.url
                         .removeSuffix("/")
                         .substringAfterLast("/")
