@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <!-- Vamos usar depois com ViewModel -->
+        <!-- Usaremos depois -->
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,7 +21,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:src="@drawable/placeholder_image" />
+            android:src="@drawable/placeholder_image"
+            android:layout_marginTop="32dp" />
 
         <TextView
             android:id="@+id/pokemon_name"
@@ -33,7 +34,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="16dp"
-            tools:text="Nome do Pokémon" />
+            tools:text="Bulbasaur" />
 
         <TextView
             android:id="@+id/pokemon_details"
@@ -43,7 +44,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="8dp"
-            tools:text="Tipo: Fogo" />
+            tools:text="Tipo: Planta/Veneno" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
