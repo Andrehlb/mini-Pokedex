@@ -34,6 +34,11 @@ class MainActivity : AppCompatActivity() {
         binding.viewModel = viewModel // Conexão da ViewModel com a variável <data> no XML.
         viewModel.getPokemonList() // Inicia a busca de dados (fake ou API)
 
+        // Observer da lista de Pokémon
+        viewModel.pokemonListLiveData.observe(this) { pokemonList: List <Pokemon> ->
+            adapter.submitList(pokemonList) // Atualiza a lista do adaptador quando os dados mudam
+        }
+
         viewModel.errorMessage.observe(this) { message ->
             if (message != null) {
                 Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
@@ -44,11 +49,6 @@ class MainActivity : AppCompatActivity() {
         val adapter = PokemonAdapter()
         binding.pokemonRecyclerView.adapter = adapter
         binding.pokemonRecyclerView.layoutManager = LinearLayoutManager(this)
-
-        // Observer da lista de Pokémon
-        viewModel.pokemonListLiveData.observe(this) { pokemonList: List <Pokemon> ->
-            adapter.submitList(pokemonList) // Atualiza a lista do adaptador quando os dados mudam
-        }
 
         // Observer do loading (ProgressBar)
         viewModel.isLoading.observe(this) { isLoading: Boolean ->
