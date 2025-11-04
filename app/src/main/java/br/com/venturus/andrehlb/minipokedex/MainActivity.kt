@@ -38,11 +38,11 @@ class MainActivity : AppCompatActivity() {
 
         // Configuração do RecyclerView
         val adapter = PokemonAdapter()
-        binding.pokemonRecyclerView.adapter = adapter
-        binding.pokemonRecyclerView.layoutManager = LinearLayoutManager(this)
+        binding.recyclerView.adapter = adapter
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
 
         // Observer da lista de Pokémon
-        viewModel.pokemonListLiveData.observe(this) { pokemonList: List <Pokemon> ->
+        viewModel.pokemonListLiveData.observe(this) { pokemonList ->
             adapter.submitList(pokemonList) // Atualiza a lista do adaptador quando os dados mudam
         }
 
@@ -55,10 +55,6 @@ class MainActivity : AppCompatActivity() {
             if (message != null) {
                 Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
             }
-        }
-
-        viewModel.pokemonListLiveData.observe(this) { pokemonList ->
-            adapter.submitList(pokemonList)
         }
 
         Log.d(tag, "onCreate chamado")
