@@ -1,5 +1,8 @@
 package br.com.venturus.andrehlb.minipokedex
 
+import android.widget.Toast
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -10,7 +13,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import android.recyclerview.widget.LinearLayoutManager
 import br.com.venturus.andrehlb.minipokedex.adapter.PokemonAdapter
 import br.com.venturus.andrehlb.minipokedex.databinding.ActivityMainBinding
 import br.com.venturus.andrehlb.minipokedex.model.Pokemon
@@ -34,6 +36,11 @@ class MainActivity : AppCompatActivity() {
         binding.viewModel = viewModel // Conexão da ViewModel com a variável <data> no XML.
         viewModel.getPokemonList() // Inicia a busca de dados (fake ou API)
 
+        // Configuração do RecyclerView
+        val adapter = PokemonAdapter()
+        binding.pokemonRecyclerView.adapter = adapter
+        binding.pokemonRecyclerView.layoutManager = LinearLayoutManager(this)
+
         // Observer da lista de Pokémon
         viewModel.pokemonListLiveData.observe(this) { pokemonList: List <Pokemon> ->
             adapter.submitList(pokemonList) // Atualiza a lista do adaptador quando os dados mudam
@@ -50,10 +57,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // Configuração do RecyclerView
-        val adapter = PokemonAdapter()
-        binding.pokemonRecyclerView.adapter = adapter
-        binding.pokemonRecyclerView.layoutManager = LinearLayoutManager(this)
+        viewModel.pokemonListLiveData.observe(this) { pokemonList ->
+            adapter.submitList(pokemonList)
+        }
 
         Log.d(tag, "onCreate chamado")
         binding.searchEditText.requestFocus()
