@@ -12,7 +12,6 @@ class PokemonListViewModel : ViewModel() {
 
     // LiveData para lista Pokémon
     val pokemonListLiveData = MutableLiveData<List<Pokemon>>()
-
     // Live Data para carregar o loading (ProgressBar)
     val isLoading = MutableLiveData<Boolean>()
     val errorMessage = MutableLiveData<String>()
@@ -30,7 +29,6 @@ class PokemonListViewModel : ViewModel() {
                         .toInt()
                     val imageUrl =
                         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$id.png"
-
                     Pokemon(
                         id = id,
                         name = result.name.replaceFirstChar {
