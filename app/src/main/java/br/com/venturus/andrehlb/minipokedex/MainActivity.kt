@@ -1,7 +1,6 @@
 package br.com.venturus.andrehlb.minipokedex
 
 import android.widget.Toast
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.os.Bundle
 import android.util.Log
