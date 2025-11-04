@@ -22,6 +22,7 @@
                 android:id="@+id/ivPokemon"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
+                android:contentDescription="@{`'Pokémon ${pokemon.name}'}"
                 app:imageUrl="@{pokemon.imageUrl}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
