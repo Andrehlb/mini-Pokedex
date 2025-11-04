@@ -14,7 +14,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import br.com.venturus.andrehlb.minipokedex.adapter.PokemonAdapter
 import br.com.venturus.andrehlb.minipokedex.databinding.ActivityMainBinding
-import br.com.venturus.andrehlb.minipokedex.model.Pokemon
 import br.com.venturus.andrehlb.minipokedex.viewmodel.PokemonListViewModel
 
 class MainActivity : AppCompatActivity() {
