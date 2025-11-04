@@ -18,27 +18,34 @@ class PokemonListViewModel : ViewModel() {
     val errorMessage = MutableLiveData<String>()
 
     fun getPokemonList() {
-          viewModelScope.launch {
-                 // Mostra o loading
-                 isLoading.value = true
-                 try {
-                     val response = RetrofitClient.pokeApiService.getPokemonList()
-                     val pokemons = response.results.mapIndexed ( index, result ->
-                         val id = result.url
-                             .removeSuffix("/")
-                             .substringAfterLast("/")
-                             .toInt()
-                         val imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$id.png"
-                         Pokemon(id, result.name.replaceFirstChar {
-                             if (it.islLowerCase()) it.litlecase(Locale.getDefault()) else it.toString()
-                         }
-                     }
-                     pokemonList.value = pokemons
-                 } catch (e: Exception) {
-                     errorMessage.value = "Erro ao buscar Pokémon: ${e.message}"
-                 } finally {
-            // Esconde o loading
-            isLoading.value = false
+        viewModelScope.launch {
+            // Mostra o loading
+            isLoading.value = true
+            try {
+                val response = RetrofitClient.pokeApiService.getPokemonList()
+                val pokemons = response.results.mapIndexed { index, result ->
+                    val id = result.url
+                        .removeSuffix("/")
+                        .substringAfterLast("/")
+                        .toInt()
+                    val imageUrl =
+                        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$id.png"
+
+                    Pokemon(
+                        id = id,
+                        name = result.name.replaceFirstChar {
+                            if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+                        },
+                        imageUrl = imageUrl
+                    )
+                }
+                pokemonListLiveData.value = pokemons
+            } catch (e: Exception) {
+                errorMessage.value = "Erro ao buscar Pokémon: ${e.message}"
+            } finally {
+                // Esconde o loading
+                isLoading.value = false
+            }
         }
     }
 }
