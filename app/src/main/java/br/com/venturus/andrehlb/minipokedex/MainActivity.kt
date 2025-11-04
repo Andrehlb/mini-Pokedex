@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Observer do loading (ProgressBar)
-        viewModel.isLoading.observe(this) { isLoading: Boolean ->
+        viewModel.isLoading.observe(this) { isLoading ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
 
