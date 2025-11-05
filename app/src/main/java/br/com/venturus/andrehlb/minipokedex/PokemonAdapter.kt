@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import br.com.venturus.andrehlb.minipokedex.databinding.ItemPokemonBinding
 import br.com.venturus.andrehlb.minipokedex.model.Pokemon
+import androidx.recyclerview.widget.ListAdapter
 class PokemonAdapter : ListAdapter<Pokemon, PokemonAdapter.PokemonViewHolder>(DiffCallback) {
 
     class PokemonViewHolder(private val binding: ItemPokemonBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -25,7 +26,7 @@ class PokemonAdapter : ListAdapter<Pokemon, PokemonAdapter.PokemonViewHolder>(Di
     }
 
     companion object {
-        private val DiffCallback = object : DiffUtil.ItemCallback<Pokemon>() {
+        val DiffCallback = object : DiffUtil.ItemCallback<Pokemon>() {
             override fun areItemsTheSame(oldItem: Pokemon, newItem: Pokemon): Boolean = oldItem.id == newItem.id
             override fun areContentsTheSame(oldItem: Pokemon, newItem: Pokemon): Boolean = oldItem == newItem
         }
