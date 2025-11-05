@@ -7,8 +7,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import br.com.venturus.andrehlb.minipokedex.databinding.ActivityDetailBinding
-import br.com.venturus.andrehlb.minipokedex.model.Pokemon
-
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
 
