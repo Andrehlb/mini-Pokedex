@@ -1,47 +1,44 @@
 package br.com.venturus.andrehlb.minipokedex.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.venturus.andrehlb.minipokedex.model.Pokemon
 import br.com.venturus.andrehlb.minipokedex.network.RetrofitClient
 import kotlinx.coroutines.launch
-import java.util.Locale
 
 class PokemonListViewModel : ViewModel() {
 
-    // LiveData para lista Pokémon
-    val pokemonListLiveData = MutableLiveData<List<Pokemon>>()
-    // Live Data para carregar o loading (ProgressBar)
-    val isLoading = MutableLiveData<Boolean>()
-    val errorMessage = MutableLiveData<String>()
+    private val _pokemonListLiveData = MutableLiveData<List<Pokemon>>()
+    val pokemonListLiveData: LiveData<List<Pokemon>> = _pokemonListLiveData
 
-    fun getPokemonList() {
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
+
+    private val _errorMessage = MutableLiveData<String?>()
+    val errorMessage: LiveData<String?> = _errorMessage
+
+    init {
+        loadPokemonFromApi()
+    }
+
+    private fun loadPokemonFromApi() {
+        _isLoading.value = true
         viewModelScope.launch {
-            // Mostra o loading
-            isLoading.value = true
             try {
-                val response = RetrofitClient.pokeApiService.getPokemonList()
-                val pokemons = response.results.map { result ->
-                    val id = result.url
-                        .removeSuffix("/")
-                        .substringAfterLast("/")
-                        .toInt()
-                    val imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$id.png"
-                    Pokemon(
-                        id = id,
-                        name = result.name.replaceFirstChar {
-                            if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
-                        },
-                        imageUrl = imageUrl
-                    )
+                val response = RetrofitClient.pokeApiService.getPokemonList(20)
+                val pokemonList = response.results.mapIndexed { index, result ->
+                    val id = result.url.split("/").dropLast(1).last().toInt()
+                    val imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png"
+                    Pokemon(id, result.name.replaceFirstChar { it.uppercase() }, imageUrl)
                 }
-                pokemonListLiveData.value = pokemons
+                _pokemonListLiveData.value = pokemonList
+                _errorMessage.value = null
             } catch (e: Exception) {
-                errorMessage.value = "Erro ao buscar Pokémon: ${e.message}"
+                _errorMessage.value = "Erro: ${e.message}"
             } finally {
-                // Esconde o loading
-                isLoading.value = false
+                _isLoading.value = false
             }
         }
     }
