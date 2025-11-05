@@ -1,10 +1,9 @@
 package br.com.venturus.andrehlb.minipokedex
 
-import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -12,12 +11,13 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.venturus.andrehlb.minipokedex.adapter.PokemonAdapter
 import br.com.venturus.andrehlb.minipokedex.databinding.ActivityMainBinding
 import br.com.venturus.andrehlb.minipokedex.viewmodel.PokemonListViewModel
 
-
 class MainActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: PokemonListViewModel
     private val tag = "MainActivity"
@@ -25,14 +25,18 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main) // Data Binding
-        // Conecta o ciclo de vida da Activity para que o LiveData na UI seja usado de forma automática.
-        binding.lifecycleOwner = this
-        // Instanciação do ViewModel
+        enableEdgeToEdge()  // ← Mantido (se quiser remover, comente)
+
+        // INFLA COM DATA BINDING USANDO O lateinit
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.lifecycleOwner = this  // ← OBRIGATÓRIO PARA LiveData
+
+        // ViewModel
         viewModel = ViewModelProvider(this)[PokemonListViewModel::class.java]
-        binding.viewModel = viewModel // Conexão da ViewModel com a variável <data> no XML.
-        viewModel.getPokemonList() // Inicia a busca de dados (fake ou API)
+        binding.viewModel = viewModel
+
+        // DADOS CARREGAM AUTOMÁTICO NO init DO VIEWMODEL
+        // NÃO PRECISA CHAMAR viewModel.getPokemonList() AQUI!
 
         // Configuração do RecyclerView
         val adapter = PokemonAdapter()
@@ -41,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 
         // Observer da lista de Pokémon
         viewModel.pokemonListLiveData.observe(this) { pokemonList ->
-            adapter.submitList(pokemonList) // Atualiza a lista do adaptador quando os dados mudam
+            adapter.submitList(pokemonList)
         }
 
         // Observer do loading (ProgressBar)
@@ -49,6 +53,7 @@ class MainActivity : AppCompatActivity() {
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
 
+        // Observer do erro (Toast)
         viewModel.errorMessage.observe(this) { message ->
             if (message != null) {
                 Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
@@ -56,9 +61,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         Log.d(tag, "onCreate chamado")
-        // Linha com requestFocus
+
+        // Foco no campo de busca
         binding.searchEditText.requestFocus()
 
+        // Padding para insets (barras do sistema)
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             Log.d(tag, "Padding aplicado")
@@ -72,7 +79,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // Ciclo de vida da Activity
+    // Ciclo de vida da Activity (mantido)
     override fun onStart() { super.onStart(); Log.d(tag, "onStart chamado") }
     override fun onResume() { super.onResume(); Log.d(tag, "onResume chamado") }
     override fun onPause() { super.onPause(); Log.d(tag, "onPause chamado") }
