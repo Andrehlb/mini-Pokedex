@@ -7,8 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.venturus.andrehlb.minipokedex.databinding.ItemPokemonBinding
 import br.com.venturus.andrehlb.minipokedex.model.Pokemon
 
-class PokemonAdapter(private val onPokemonClickListener: (Pokemon) -> Unit) :
-    ListAdapter<Pokemon, PokemonAdapter.PokemonViewHolder>(DiffCallback) {
+class PokemonAdapter : ListAdapter<Pokemon, PokemonAdapter.PokemonViewHolder>(PokemonDiffCallback()) {
 
     class PokemonViewHolder(val binding: ItemPokemonBinding) : RecyclerView.ViewHolder(binding.root)
 
