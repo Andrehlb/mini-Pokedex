@@ -28,7 +28,7 @@ class PokemonListViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val response = RetrofitClient.pokeApiService.getPokemonList(20)
-                val pokemonList = response.results.mapIndexed { index, result ->
+                val pokemonList = response.results.map { result ->
                     val id = result.url.split("/").dropLast(1).last().toInt()
                     val imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png"
                     Pokemon(id, result.name.replaceFirstChar { it.uppercase() }, imageUrl)
