@@ -40,10 +40,10 @@ class DetailViewModel : ViewModel() {
 
     fun hideLoading() {
         _isLoading.value = false
-    }
+    }                           
 
     /**
-     * Definir mensagem de erro (opcional).
+     * `Definir mensagem de erro (opcional).
      */
     fun setError(message: String?) {
         _errorMessage.value = message
