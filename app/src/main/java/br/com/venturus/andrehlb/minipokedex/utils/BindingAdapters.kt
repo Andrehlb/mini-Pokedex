@@ -7,10 +7,14 @@ import coil.transform.CircleCropTransformation
 import br.com.venturus.andrehlb.minipokedex.R
 
 @BindingAdapter("imageUrl")
-fun loadImage(view: ImageView, url : String?) {
-    if (url.isNullOrEmpty()) return
+fun loadImage(view: ImageView, url: String?) {
+    if (url.isNullOrEmpty()) {
+        view.setImageResource(R.drawable.ic_pokemon_placeholder)
+        return
+    }
     view.load(url) {
         crossfade(true)
-        placeholder(R.color.darker_gray)
+        placeholder(R.drawable.ic_pokemon_placeholder)
+        error(R.drawable.ic_error)
     }
 }
