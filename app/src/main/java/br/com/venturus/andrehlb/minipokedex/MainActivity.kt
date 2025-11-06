@@ -40,7 +40,11 @@ class MainActivity : AppCompatActivity() {
         // NÃO PRECISA CHAMAR viewModel.getPokemonList() AQUI!
 
         // Configuração do RecyclerView
-        val adapter = PokemonAdapter()
+        val adapter = PokemonAdapter { pokemon ->
+            // No futuro, aqui você vai abrir a tela de detalhes.
+            // Por agora, apenas mostramos o nome para testar.
+            Toast.makeText(this, "Clicou em: ${pokemon.name}", Toast.LENGTH_SHORT).show()
+        }
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
 
