@@ -3,7 +3,8 @@ package br.com.venturus.andrehlb.minipokedex.utils
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import coil.load
-import android.R
+import coil.transform.CircleCropTransformation
+import br.com.venturus.andrehlb.minipokedex.R
 
 @BindingAdapter("imageUrl")
 fun loadImage(view: ImageView, url: String?) {
