@@ -27,21 +27,16 @@ class PokemonListViewModel : ViewModel() {
         _isLoading.value = true
         viewModelScope.launch {
             try {
-                val response = RetrofitClient.pokeApiService.getPokemonList(limit = 20)
-                val pokemonList = response.results.map { result ->
+                val response = RetrofitClient.pokeApiService.getPokemonList(20)
+                val pokemonList = response.results.mapIndexed { index, result ->
                     val id = result.url.split("/").dropLast(1).last().toInt()
                     val imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png"
-                    Pokemon(
-                        id = id,
-                        name = result.name.replaceFirstChar { it.uppercase() },
-                        imageUrl = imageUrl
-                    )
+                    Pokemon(id, result.name.replaceFirstChar { it.uppercase() }, imageUrl)
                 }
                 _pokemonListLiveData.value = pokemonList
                 _errorMessage.value = null
             } catch (e: Exception) {
-                _errorMessage.value = "Sem internet ou erro na API: ${e.message}"
-                e.printStackTrace()
+                _errorMessage.value = "Erro: ${e.message}"
             } finally {
                 _isLoading.value = false
             }
