@@ -61,6 +61,9 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.6")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
 
+    // Lottie
+    implementation("com.airbnb.android:lottie:6.4.0")
+
     // Lifecycle
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.6")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.6")
