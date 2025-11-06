@@ -22,7 +22,8 @@ class PokemonAdapter : ListAdapter<Pokemon, PokemonAdapter.PokemonViewHolder>(Di
     }
 
     override fun onBindViewHolder(holder: PokemonViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        val pokemon = getItem(position)
+        holder.bind(pokemon)
     }
 
     companion object {
