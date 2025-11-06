@@ -3,10 +3,14 @@ package br.com.venturus.andrehlb.minipokedex.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import br.com.venturus.andrehlb.minipokedex.model.Pokemon
-import br.com.venturus.andrehlb.minipokedex.network.RetrofitClient
-import kotlinx.coroutines.launch
+
+/**
+ * ViewModel de detalhe simplificado — seguindo o fluxo da aula:
+ * - NÃO realiza chamadas de rede aqui.
+ * - Recebe o Pokemon via Intent (ou via quem invocar).
+ * - Expõe isLoading para controlar a Lottie/overlay.
+ */
 
 class DetailViewModel : ViewModel() {
 
@@ -20,35 +24,28 @@ class DetailViewModel : ViewModel() {
     val errorMessage: LiveData<String?> = _errorMessage
 
     /**
-     * Busca o detalhe do Pokémon por nome.
-     * - Mantém _isLoading true durante a operação.
-     * - Preenche _pokemonDetail com o resultado ou seta _errorMessage.
+     * Configura o Pokemon (por exemplo, chamado pelo Activity ao receber a Intent).
+     * Mantemos padrão null para sinalizar ausência.
      */
-    fun loadPokemonDetail(name: String) {
-        // Normalize (em caso de entrada com uppercase/minúsculas)
-        val searchName = name.trim().lowercase()
-        _isLoading.value = true
-        _errorMessage.value = null
+    fun setPokemon(pokemon: Pokemon?) {
+        _pokemonDetail.value = pokemon
+    }
 
-        viewModelScope.launch {
-            try {
-                // A PokeAPI original busca por nome /pokemon/{name}
-                // para isto o getPokemonByName() que o DetailViewModel vai usar precisará estar no PokeApiService.kt com um modelo para resposta.
-                val response = RetrofitClient.pokeApiService.getPokemonByName(searchName)
-                // Monta o model local (ajuste se seu Pokemon exigiu campos diferentes)
-                val pokemon = Pokemon(
-                    id = response.results[0].url.split("/").dropLast(1).last().toInt(),
-                    name = response.results[0].name.replaceFirstChar { it.uppercase() },
-                    imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${response.results[0].url.split("/").dropLast(1).last()}.png"
-                )
-                _pokemonDetail.value = pokemon
-                _errorMessage.value = null
-            } catch (e: Exception) {
-                _pokemonDetail.value = null
-                _errorMessage.value = "Sem internet ou Pokémon não encontrado: ${e.message ?: "erro"}"
-            } finally {
-                _isLoading.value = false
-            } // try/catch/finally
-        } // viewModelScope.launch
-    } // loadPokemonDetail
-} // DetailViewModel
+    /**
+     * Controladores de loading — usados para mostrar/esconder o overlay + Lottie.
+     */
+    fun showLoading() {
+        _isLoading.value = true
+    }
+
+    fun hideLoading() {
+        _isLoading.value = false
+    }
+
+    /**
+     * Definir mensagem de erro (opcional).
+     */
+    fun setError(message: String?) {
+        _errorMessage.value = message
+    }
+}
