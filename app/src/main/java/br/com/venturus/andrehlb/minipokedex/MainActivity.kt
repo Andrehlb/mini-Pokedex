@@ -25,14 +25,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()  // ← Mantido (se quiser remover, comente)
+        enableEdgeToEdge()
 
         // INFLA COM DATA BINDING USANDO O lateinit
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.lifecycleOwner = this  // ← OBRIGATÓRIO PARA LiveData
 
         // ViewModel
-        viewModel = ViewModelProvider(this)[PokemonListViewModel::class.java]
+        // Esta é a linha CORRETA
+        viewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(application))[PokemonListViewModel::class.java]
+
         binding.viewModel = viewModel
 
         // DADOS CARREGAM AUTOMÁTICO NO init DO VIEWMODEL
