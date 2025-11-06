@@ -15,5 +15,6 @@ fun loadImage(view: ImageView, url: String?) {
         crossfade(true)
         placeholder(R.drawable.ic_pokemon_placeholder)
         error(R.drawable.ic_error)
+        transformations(CircleCropTransformation())
     }
 }
