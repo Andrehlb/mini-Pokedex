@@ -6,10 +6,14 @@ import coil.load
 import android.R
 
 @BindingAdapter("imageUrl")
-fun loadImage(view: ImageView, url : String?) {
-      if (url.isNullOrEmpty()) return
-      view.load(url) {
-            crossfade(true)
-            placeholder(R.color.darker_gray)
+fun loadImage(view: ImageView, url: String?) {
+    if (url.isNullOrEmpty()) {
+        view.setImageResource(R.drawable.ic_pokemon_placeholder)
+        return
+    }
+    view.load(url) {
+        crossfade(true)
+        placeholder(R.drawable.ic_pokemon_placeholder)
+        error(R.drawable.ic_error)
     }
 }
