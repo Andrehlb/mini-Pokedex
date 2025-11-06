@@ -36,9 +36,9 @@ class DetailViewModel : ViewModel() {
                 val response = RetrofitClient.pokeApiService.getPokemonByName(searchName)
                 // Monta o model local (ajuste se seu Pokemon exigiu campos diferentes)
                 val pokemon = Pokemon(
-                    id = response.id,
-                    name = response.name.replaceFirstChar { it.uppercase() },
-                    imageUrl = response.sprites.frontDefault ?: ""
+                    id = response.results[0].url.split("/").dropLast(1).last().toInt(),
+                    name = response.results[0].name.replaceFirstChar { it.uppercase() },
+                    imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${response.results[0].url.split("/").dropLast(1).last()}.png"
                 )
                 _pokemonDetail.value = pokemon
                 _errorMessage.value = null
