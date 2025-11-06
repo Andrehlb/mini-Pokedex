@@ -36,7 +36,7 @@ class PokemonListViewModel : ViewModel() {
                 _pokemonListLiveData.value = pokemonList
                 _errorMessage.value = null
             } catch (e: Exception) {
-                _errorMessage.value = "Erro: ${e.message}"
+                _errorMessage.value = "Sem internet ou erro na sincronização: ${e.message}"
             } finally {
                 _isLoading.value = false
             }
