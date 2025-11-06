@@ -33,6 +33,7 @@ class DetailViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 // A PokeAPI original busca por nome /pokemon/{name}
+                // para isto o getPokemonByName() que o DetailViewModel vai usar precisará estar no PokeApiService.kt com um modelo para resposta.
                 val response = RetrofitClient.pokeApiService.getPokemonByName(searchName)
                 // Monta o model local (ajuste se seu Pokemon exigiu campos diferentes)
                 val pokemon = Pokemon(
