@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+val kotlin_version = "2.0."
 
 plugins {
     alias(libs.plugins.android.application)
@@ -10,6 +11,13 @@ plugins {
 android {
     namespace = "br.com.venturus.andrehlb.minipokedex"
     compileSdk = 36
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 
     defaultConfig {
         applicationId = "br.com.venturus.andrehlb.minipokedex"
@@ -49,6 +57,10 @@ android {
 }
 
 dependencies {
+
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:2.0.0")
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+
     // Jetpack
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.core:core-splashscreen:1.0.1")
