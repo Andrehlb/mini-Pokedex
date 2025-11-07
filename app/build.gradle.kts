@@ -57,6 +57,9 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
 
+    // Fragment
+    implementation("androidx.fragment:fragment-ktx:1.8.4")
+
     // Lottie
     implementation("com.airbnb.android:lottie:6.4.0")
 
