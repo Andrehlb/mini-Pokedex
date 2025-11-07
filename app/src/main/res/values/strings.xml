@@ -3,4 +3,6 @@
     <string name="splash_image_description">Logo com a bola Pokédex sobre um fundo laranja, do aplicativo Mini Pokédex</string>
     <string name="search_hint">Digite o nome do Pokémon</string>
     <string name="pokemon_image_description">Imagem do Pokémon</string>
+    <string name="pokemon_details_id">ID: %1$d</string>
+    <string name="pokemon_details_type">Tipo: %1$s</string>
 </resources>

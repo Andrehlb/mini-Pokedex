@@ -1,28 +1,32 @@
 package br.com.venturus.andrehlb.minipokedex
 
+import android.os.Build
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.databinding.DataBindingUtil
 import br.com.venturus.andrehlb.minipokedex.databinding.ActivityDetailBinding
+import br.com.venturus.andrehlb.minipokedex.model.Pokemon
+
 class DetailActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        binding = ActivityDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        // Usa DataBinding
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_detail)
-        binding.lifecycleOwner = this
+        // Recupera Pokemon passado pela Intent (compatível com API 33+)
+        val pokemon: Pokemon? = if (Build.VERSION.SDK_INT >= 33) {
+            intent.getParcelableExtra("pokemon", Pokemon::class.java)
+        } else {
+            @Suppress("DEPRECATION")
+            intent.getParcelableExtra("pokemon")
+        }
 
-        // Ajusta padding para barras do sistema
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            view.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        // Se existir, popula a UI simples (se seu layout tiver esses ids)
+        pokemon?.let {
+            binding.pokemonName.text = it.name
+            binding.pokemonDetails.text = getString(R.string.pokemon_details_type)
         }
     }
 }

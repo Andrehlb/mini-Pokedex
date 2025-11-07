@@ -32,19 +32,11 @@ class MainActivity : AppCompatActivity() {
         binding.lifecycleOwner = this  // ← OBRIGATÓRIO PARA LiveData
 
         // ViewModel
-        // Esta é a linha CORRETA
         viewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(application))[PokemonListViewModel::class.java]
         binding.viewModel = viewModel
 
-        // DADOS CARREGAM AUTOMÁTICO NO init DO VIEWMODEL
-        // NÃO PRECISA CHAMAR viewModel.getPokemonList() AQUI!
-
         // Configuração do RecyclerView
-        val adapter = PokemonAdapter { pokemon ->
-            // No futuro, aqui você vai abrir a tela de detalhes.
-            // Por agora, apenas mostramos o nome para testar.
-            Toast.makeText(this, "Clicou em: ${pokemon.name}", Toast.LENGTH_SHORT).show()
-        }
+        val adapter = PokemonAdapter()
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -54,8 +46,17 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Observer do loading (ProgressBar)
-        viewModel.isLoading.observe(this) { isLoading ->
+        /* viewModel.isLoading.observe(this) { isLoading ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        } */
+        viewModel.isLoading.observe(this) { isLoading ->
+            if (isLoading) {
+                binding.lottieLoading.visibility = View.VISIBLE
+                binding.lottieLoading.playAnimation()
+            } else {
+                binding.lottieLoading.pauseAnimation()
+                binding.lottieLoading.visibility = View.GONE
+            }
         }
 
         // Observer do erro (Toast)
