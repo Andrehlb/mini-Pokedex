@@ -45,5 +45,19 @@
             app:layout_constraintTop_toBottomOf="@id/search_edit_text"
             app:layout_constraintBottom_toBottomOf="parent" />
 
+        <!-- Animação Lottie para loading
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieLoading"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:lottie_rawRes="@raw/pokeballloading"
+            app:lottie_autoPlay="false"
+            app:lottie_loop="true"
+            android:visibility="gone" /> -->
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
