@@ -77,9 +77,9 @@ class MainActivity : AppCompatActivity() {
             Log.d(tag, "Padding aplicado")
             v.setPadding(
                 systemBars.left,
-                systemBars.top * 2,
+                systemBars.top,
                 systemBars.right,
-                systemBars.bottom * 2
+                systemBars.bottom
             )
             insets
         }
