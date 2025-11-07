@@ -29,8 +29,12 @@ class PokemonDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Recupera o Pokémon passado pela Activity (via argumento)
-        val pokemon = arguments?.getParcelable<Pokemon>("pokemon")
-        viewModel.setPokemon(pokemon)
+        val pokemon = if (android.os.Build.VERSION.SDK_INT >= 33) {
+            arguments?.getParcelable("pokemon", Pokemon::class.java)
+        } else {
+            @Suppress("DEPRECATION")
+            arguments?.getParcelable<Pokemon>("pokemon")
+        }
 
         // Observa estado de carregamento
         viewModel.isLoading.observe(viewLifecycleOwner, Observer { isLoading ->
