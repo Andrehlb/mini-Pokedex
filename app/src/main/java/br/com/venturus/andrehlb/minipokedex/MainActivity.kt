@@ -46,8 +46,17 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Observer do loading (ProgressBar)
-        viewModel.isLoading.observe(this) { isLoading ->
+        /* viewModel.isLoading.observe(this) { isLoading ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        } */
+        viewModel.isLoading.observe(this) { isLoading ->
+            if (isLoading) {
+                binding.lottieLoading.visibility = View.VISIBLE
+                binding.lottieLoading.playAnimation()
+            } else {
+                binding.lottieLoading.pauseAnimation()
+                binding.lottieLoading.visibility = View.GONE
+            }
         }
 
         // Observer do erro (Toast)
