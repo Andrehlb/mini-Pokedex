@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -10,14 +8,7 @@ plugins {
 android {
     namespace = "br.com.venturus.andrehlb.minipokedex"
     compileSdk = 36
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-
+    
     defaultConfig {
         applicationId = "br.com.venturus.andrehlb.minipokedex"
         minSdk = 24
@@ -37,17 +28,14 @@ android {
             )
         }
     }
-    // As compileOptions são mantidas para compatibilidade,
+    
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    // Bloco de configuração do kotlin
-    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_17)
-        }
+    kotlinOptions {
+        jvmTarget = "17"
     }
 
     buildFeatures {
@@ -57,7 +45,7 @@ android {
 
 dependencies {
 
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:2.0.0")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.8.0")
     implementation("androidx.datastore:datastore-preferences:1.0.0")
 
     // Jetpack
