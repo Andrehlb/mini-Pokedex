@@ -32,12 +32,8 @@ class MainActivity : AppCompatActivity() {
         binding.lifecycleOwner = this  // ← OBRIGATÓRIO PARA LiveData
 
         // ViewModel
-        // Esta é a linha CORRETA
         viewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(application))[PokemonListViewModel::class.java]
         binding.viewModel = viewModel
-
-        // DADOS CARREGAM AUTOMÁTICO NO init DO VIEWMODEL
-        // NÃO PRECISA CHAMAR viewModel.getPokemonList() AQUI!
 
         // Configuração do RecyclerView
         val adapter = PokemonAdapter()
