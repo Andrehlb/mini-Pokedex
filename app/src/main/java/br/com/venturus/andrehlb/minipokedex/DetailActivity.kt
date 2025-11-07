@@ -3,6 +3,7 @@ package br.com.venturus.andrehlb.minipokedex
 import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import br.com.venturus.andrehlb.minipokedex.databinding.ActivityDetailBinding
 import br.com.venturus.andrehlb.minipokedex.model.Pokemon
 
@@ -12,7 +13,7 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityDetailBinding.inflate(layoutInflater)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_detail)
         setContentView(binding.root)
 
         // Recupera Pokemon passado pela Intent (compatível com API 33+)
