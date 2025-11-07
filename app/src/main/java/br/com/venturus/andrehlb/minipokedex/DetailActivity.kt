@@ -26,7 +26,7 @@ class DetailActivity : AppCompatActivity() {
         // Se existir, popula a UI simples (se seu layout tiver esses ids)
         pokemon?.let {
             binding.pokemonName.text = it.name
-            binding.pokemonDetails.text = "ID: ${it.id}"
+            binding.pokemonDetails.text = getString(R.string.pokemon_details_type)
         }
     }
 }
