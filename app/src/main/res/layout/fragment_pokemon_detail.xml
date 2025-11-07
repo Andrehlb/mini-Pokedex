@@ -73,7 +73,7 @@
                 android:layout_gravity="center"
                 app:lottie_autoPlay="false"
                 app:lottie_loop="true"
-                app:lottie_rawRes="@raw/pokeball"
+                app:lottie_rawRes="@raw/pokeballspin"
                 android:visibility="gone" />
         </FrameLayout>
 
