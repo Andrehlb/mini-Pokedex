@@ -71,6 +71,29 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        // Foco no campo de busca
+        binding.searchEditText.requestFocus()
+
+        // Implementar busca
+        binding.searchEditText.addTextChangedListener(object : android.text.TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(s: android.text.Editable?) {
+                val query = s.toString().trim()
+                val fullList = viewModel.pokemonListLiveData.value ?: emptyList()
+
+                val filteredList = if (query.isEmpty()) {
+                    fullList
+                } else {
+                    fullList.filter { pokemon ->
+                        pokemon.name.contains(query, ignoreCase = true)
+                    }
+                }
+                adapter.submitList(filteredList)
+            }
+        })
+
         Log.d(tag, "onCreate chamado")
 
         // Foco no campo de busca
