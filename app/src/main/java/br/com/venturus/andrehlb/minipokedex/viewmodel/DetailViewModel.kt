@@ -4,6 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.venturus.andrehlb.minipokedex.model.Pokemon
+import br.com.venturus.andrehlb.minipokedex.model.PokemonDetailResponse
+import androidx.lifecycle.viewModelScope
+import br.com.venturus.andrehlb.minipokedex.network.RetrofitClient
+import kotlinx.coroutines.launch
 
 /**
  * ViewModel de detalhe simplificado — seguindo o fluxo da aula:
@@ -14,8 +18,8 @@ import br.com.venturus.andrehlb.minipokedex.model.Pokemon
 
 class DetailViewModel : ViewModel() {
 
-    private val _pokemonDetail = MutableLiveData<Pokemon?>()
-    val pokemonDetail: LiveData<Pokemon?> = _pokemonDetail
+    private val _pokemonDetail = MutableLiveData<PokemonDetailResponse?>()
+    val pokemonDetail: LiveData<PokemonDetailResponse?> = _pokemonDetail
 
     private val _isLoading = MutableLiveData<Boolean>(false)
     val isLoading: LiveData<Boolean> = _isLoading
@@ -23,29 +27,20 @@ class DetailViewModel : ViewModel() {
     private val _errorMessage = MutableLiveData<String?>()
     val errorMessage: LiveData<String?> = _errorMessage
 
-    /**
-     * Configura o Pokemon (por exemplo, chamado pelo Activity ao receber a Intent).
-     * Mantemos padrão null para sinalizar ausência.
-     */
-    fun setPokemon(pokemon: Pokemon?) {
-        _pokemonDetail.value = pokemon
-    }
+    fun fetchPokemonDetails(pokemonId: Int) {
+        viewModelScope.launch {
+            _isLoading.value = true
+            _errorMessage.value = null
 
-    /**
-     * Controladores de loading — usados para mostrar/esconder o overlay + Lottie.
-     */
-    fun showLoading() {
-        _isLoading.value = true
-    }
-
-    fun hideLoading() {
-        _isLoading.value = false
-    }                           
-
-    /**
-     * `Definir mensagem de erro (opcional).
-     */
-    fun setError(message: String?) {
-        _errorMessage.value = message
+            try {
+                val response = RetrofitClient.api.getPokemonById(pokemonId)
+                _pokemonDetail.value = response
+            } catch (e: Exception) {
+                _errorMessage.value = "Erro ao carregar detalhes: ${e.message}"
+                _pokemonDetail.value = null
+            } finally {
+                _isLoading.value = false
+            }
+        }
     }
 }
