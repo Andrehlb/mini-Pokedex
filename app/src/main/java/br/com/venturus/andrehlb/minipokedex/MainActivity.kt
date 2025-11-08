@@ -77,9 +77,9 @@ class MainActivity : AppCompatActivity() {
             Log.d(tag, "Padding aplicado")
             v.setPadding(
                 systemBars.left,
-                systemBars.top * 2,
+                systemBars.top,    // CORRIGIDO: Removido * 2 - estava criando padding excessivo
                 systemBars.right,
-                systemBars.bottom * 2
+                systemBars.bottom  // CORRIGIDO: Removido * 2 - deixava pouco espaço para RecyclerView
             )
             insets
         }
