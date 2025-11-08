@@ -45,6 +45,11 @@ class MainActivity : AppCompatActivity() {
             adapter.submitList(pokemonList)
         }
 
+        viewModel.pokemonListLiveData.observe(this) { pokemonList ->
+            Log.d(tag, "Total de Pokémon carregados: ${pokemonList.size}")
+            adapter.submitList(pokemonList)
+        }
+
         // Observer do loading (ProgressBar)
         /* viewModel.isLoading.observe(this) { isLoading ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
@@ -77,9 +82,9 @@ class MainActivity : AppCompatActivity() {
             Log.d(tag, "Padding aplicado")
             v.setPadding(
                 systemBars.left,
-                systemBars.top * 2,
+                systemBars.top,
                 systemBars.right,
-                systemBars.bottom * 2
+                systemBars.bottom
             )
             insets
         }
