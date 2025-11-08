@@ -25,7 +25,9 @@ fun loadImage(view: ImageView, url: String?) {
 fun setPokemonTypes(view: TextView, pokemonDetail: PokemonDetailResponse?) {
     pokemonDetail?.let {
         val types = it.types.joinToString(", ") { type ->
-            type.type.name.capitalize()
+            type.type.name.replaceFirstChar { char ->
+                if (char.isLowerCase()) char.titlecase() else char.toString()
+            }
         }
         view.text = types
     }
