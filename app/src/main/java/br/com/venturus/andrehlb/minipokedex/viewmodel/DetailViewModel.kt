@@ -3,7 +3,6 @@ package br.com.venturus.andrehlb.minipokedex.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import br.com.venturus.andrehlb.minipokedex.model.Pokemon
 import br.com.venturus.andrehlb.minipokedex.model.PokemonDetailResponse
 import androidx.lifecycle.viewModelScope
 import br.com.venturus.andrehlb.minipokedex.network.RetrofitClient
