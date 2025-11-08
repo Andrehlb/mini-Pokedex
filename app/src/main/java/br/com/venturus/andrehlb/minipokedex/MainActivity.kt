@@ -1,6 +1,6 @@
 package br.com.venturus.andrehlb.minipokedex
 
-import android.content.Intent  // ← ADICIONE: Import para navegação
+import android.content.Intent  // Import para navegação
 import android.os.Bundle
 import android.util.Log
 import android.view.View
