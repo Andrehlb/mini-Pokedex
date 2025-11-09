@@ -15,4 +15,36 @@
     <string name="pokemon_special_defense">Sp. Def</string>
     <string name="pokemon_speed">Speed</string>
     <string name="pokemon_type_title">Tipos</string>
+
+    <!-- Strings para filtros -->
+    <string name="filter_all_types">Todos os Tipos</string>
+    <string name="filter_all_generations">Todas Gerações</string>
+    <string name="filter_type_normal">Normal</string>
+    <string name="filter_type_fire">Fire</string>
+    <string name="filter_type_water">Water</string>
+    <string name="filter_type_electric">Electric</string>
+    <string name="filter_type_grass">Grass</string>
+    <string name="filter_type_ice">Ice</string>
+    <string name="filter_type_fighting">Fighting</string>
+    <string name="filter_type_poison">Poison</string>
+    <string name="filter_type_ground">Ground</string>
+    <string name="filter_type_flying">Flying</string>
+    <string name="filter_type_psychic">Psychic</string>
+    <string name="filter_type_bug">Bug</string>
+    <string name="filter_type_rock">Rock</string>
+    <string name="filter_type_ghost">Ghost</string>
+    <string name="filter_type_dragon">Dragon</string>
+    <string name="filter_type_dark">Dark</string>
+    <string name="filter_type_steel">Steel</string>
+    <string name="filter_type_fairy">Fairy</string>
+
+    <string name="filter_generation_1">Gen I (Kanto)</string>
+    <string name="filter_generation_2">Gen II (Johto)</string>
+    <string name="filter_generation_3">Gen III (Hoenn)</string>
+    <string name="filter_generation_4">Gen IV (Sinnoh)</string>
+    <string name="filter_generation_5">Gen V (Unova)</string>
+    <string name="filter_generation_6">Gen VI (Kalos)</string>
+    <string name="filter_generation_7">Gen VII (Alola)</string>
+    <string name="filter_generation_8">Gen VIII (Galar)</string>
+    <string name="filter_generation_9">Gen IX (Paldea)</string>
 </resources>
