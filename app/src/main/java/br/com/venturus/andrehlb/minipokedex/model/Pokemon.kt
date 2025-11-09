@@ -9,7 +9,7 @@ data class Pokemon(
     val name: String,
     val imageUrl: String,
     val types: List<String> = emptyList(),  // Lista de tipos (Fire, Water, etc)
-    val generation: Int = 1  // Geração calculada baseada no ID
+    val generation: Int = 0  // Geração calculada baseada no ID
 ) : Parcelable {
 
     companion object {
@@ -24,7 +24,8 @@ data class Pokemon(
                 in 650..721 -> 6    // Gen VI (Kalos)
                 in 722..809 -> 7    // Gen VII (Alola)
                 in 810..905 -> 8    // Gen VIII (Galar)
-                else -> 1
+                in 906..1025 -> 9   // Gen IX (Paldea)
+                else -> 0
             }
         }
     }
