@@ -16,17 +16,50 @@
         android:padding="16dp"
         tools:context=".MainActivity">
 
+        <!-- ← NOVO: Cabeçalho com logo + título -->
+        <LinearLayout
+            android:id="@+id/header_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <!-- Logo Pokeball -->
+            <ImageView
+                android:id="@+id/logo_pokeball"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/logo_pokeball_1stview_foreground"
+                android:contentDescription="@string/splash_image_description"
+                android:layout_marginEnd="8dp" />
+
+            <!-- Texto "Mini Pokédex" -->
+            <TextView
+                android:id="@+id/app_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="?attr/colorPrimary" />
+        </LinearLayout>
+
+        <!-- Caixa de busca agora abaixo do cabeçalho -->
         <!-- Campo de busca por nome -->
         <EditText
             android:id="@+id/search_edit_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:autofillHints="pokemonNme"
             android:hint="@string/search_hint"
             android:inputType="text"
-            android:autofillHints="pokemonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/header_container" />
 
         <!-- Container horizontal para os filtros -->
         <LinearLayout
@@ -89,8 +122,9 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/filters_container"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            tools:layout_editor_absoluteX="16dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
