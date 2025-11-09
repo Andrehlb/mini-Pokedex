@@ -27,12 +27,36 @@ class PokemonListViewModel : ViewModel() {
         _isLoading.value = true
         viewModelScope.launch {
             try {
-                val response = RetrofitClient.pokeApiService.getPokemonList(20)
-                val pokemonList = response.results.map { result ->
-                    val id = result.url.split("/").dropLast(1).last().toInt()
-                    val imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png"
-                    Pokemon(id, result.name.replaceFirstChar { it.uppercase() }, imageUrl)
+                // Buscar lista básica de Pokemon - 1025 (gen e I a IX)
+                val response = RetrofitClient.pokeApiService.getPokemonList(1025)
+                val pokemonList = mutableListOf<Pokemon>()
+
+                // Busca detalhes de cada Pokemon para obter tipos
+                response.results.forEach { result ->
+                    try {
+                        val id = result.url.split("/").dropLast(1).last().toInt()
+                        val imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png"
+
+                        // Buscar detalhes para obter tipos
+                        val details = RetrofitClient.pokeApiService.getPokemonById(id)
+                        val types = details.types.map { it.type.name.capitalize() }
+                        val generation = Pokemon.getGenerationFromId(id)
+
+                        pokemonList.add(
+                            Pokemon(
+                                id = id,
+                                name = result.name.replaceFirstChar { it.uppercase() },
+                                imageUrl = imageUrl,
+                                types = types,
+                                generation = generation
+                            )
+                        )
+                    } catch (e: Exception) {
+                        // Se falhar para um Pokemon específico, continua com os outros
+                        e.printStackTrace()
+                    }
                 }
+
                 _pokemonListLiveData.value = pokemonList
                 _errorMessage.value = null
             } catch (e: Exception) {
@@ -41,5 +65,10 @@ class PokemonListViewModel : ViewModel() {
                 _isLoading.value = false
             }
         }
+    }
+
+    // Extensão auxiliar para capitalizar strings
+    private fun String.capitalize(): String {
+        return this.replaceFirstChar { if (it.isLowerCase()) it.titlecase() else it.toString() }
     }
 }
