@@ -345,5 +345,5 @@ Este projeto é fornecido como parte do curso Venturus Native Android. Uso educa
 
 ---
 
-**Desenvolvido com ❤️ por André**  
+**Desenvolvido com ❤️ por André Luiz Brbosa (Andrehlb)**  
 **Última atualização:** 09 de Novembro de 2025
