@@ -41,7 +41,7 @@ class DetailViewModel : ViewModel() {
             _errorMessage.value = null
 
             try {
-                val response = RetrofitClient.api.getPokemonById(pokemonId)
+                val response = RetrofitClient.pokeApiService.getPokemonById(pokemonId)
                 _pokemonDetail.value = response
             } catch (e: Exception) {
                 _errorMessage.value = "Erro ao carregar detalhes: ${e.message}"
