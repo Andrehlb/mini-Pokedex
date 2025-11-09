@@ -3,6 +3,6 @@
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@drawable/logominipokedex_background_orange" />
+            android:src="@drawable/logo_pokeball_1stview_foreground" />
     </item>
 </layer-list>
