@@ -7,12 +7,14 @@ import androidx.databinding.DataBindingUtil
 import br.com.venturus.andrehlb.minipokedex.databinding.ActivityDetailBinding
 import br.com.venturus.andrehlb.minipokedex.model.Pokemon
 import android.view.View
+import br.com.venturus.andrehlb.minipokedex.viewmodel.DetailViewModel
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
+    private lateinit var viewModel: DetailViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
