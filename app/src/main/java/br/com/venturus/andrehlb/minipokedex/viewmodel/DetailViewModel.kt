@@ -23,6 +23,15 @@ class DetailViewModel : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>(false)
     val isLoading: LiveData<Boolean> = _isLoading
 
+    // Chama o fragment
+    fun showLoading() {
+        _isLoading.value = true
+    }
+
+    fun hideLoading() {
+        _isLoading.value = false
+    }
+
     private val _errorMessage = MutableLiveData<String?>()
     val errorMessage: LiveData<String?> = _errorMessage
 
