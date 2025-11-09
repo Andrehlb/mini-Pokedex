@@ -1,11 +1,16 @@
 package br.com.venturus.andrehlb.minipokedex
 
-import android.content.Intent  // Import para navegação
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
@@ -14,6 +19,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.venturus.andrehlb.minipokedex.databinding.ActivityMainBinding
+import br.com.venturus.andrehlb.minipokedex.model.Pokemon
 import br.com.venturus.andrehlb.minipokedex.viewmodel.PokemonListViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -21,6 +27,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: PokemonListViewModel
     private val tag = "MainActivity"
+
+    // NOVO: Lista completa de Pokemon (cache para filtros)
+    private var fullPokemonList: List<Pokemon> = emptyList()
+
+    // NOVO: Filtros selecionados
+    private var selectedType: String? = null
+    private var selectedGeneration: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
@@ -33,9 +46,8 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(application))[PokemonListViewModel::class.java]
         binding.viewModel = viewModel
 
-        // MODIFICADO: Adapter agora recebe callback de clique
+        // Adapter com callback de clique
         val adapter = PokemonAdapter { pokemon ->
-            // Navegar para DetailActivity ao clicar
             val intent = Intent(this, DetailActivity::class.java)
             intent.putExtra("pokemon", pokemon)
             startActivity(intent)
@@ -43,8 +55,13 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
 
+        // Configurar spinners de filtro
+        setupTypeFilterSpinner()
+        setupGenerationFilterSpinner()
+
         viewModel.pokemonListLiveData.observe(this) { pokemonList ->
-            adapter.submitList(pokemonList)
+            fullPokemonList = pokemonList
+            applyFilters()
         }
 
         viewModel.isLoading.observe(this) { isLoading ->
@@ -67,25 +84,101 @@ class MainActivity : AppCompatActivity() {
 
         binding.searchEditText.requestFocus()
 
-        // Implementar busca em tempo real
+        // Busca em tempo real (agora integrada com filtros)
         binding.searchEditText.addTextChangedListener(object : android.text.TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun afterTextChanged(s: android.text.Editable?) {
-                val query = s.toString().trim()
-                val fullList = viewModel.pokemonListLiveData.value ?: emptyList()
-
-                val filteredList = if (query.isEmpty()) {
-                    fullList
-                } else {
-                    fullList.filter { pokemon ->
-                        pokemon.name.contains(query, ignoreCase = true)
-                    }
-                }
-                adapter.submitList(filteredList)
+                applyFilters()
             }
         })
+    }
+
+    // Configurar spinner de tipos
+    private fun setupTypeFilterSpinner() {
+        val types = listOf(
+            "Todos os Tipos", "Normal", "Fire", "Water", "Electric", "Grass",
+            "Ice", "Fighting", "Poison", "Ground", "Flying", "Psychic",
+            "Bug", "Rock", "Ghost", "Dragon", "Dark", "Steel", "Fairy"
+        )
+
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, types)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.typeFilterSpinner.adapter = adapter
+
+        binding.typeFilterSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                selectedType = if (position == 0) null else types[position]
+                applyFilters()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                selectedType = null
+            }
+        }
+    }
+
+    // Configurar spinner de gerações
+    private fun setupGenerationFilterSpinner() {
+        val generations = listOf(
+            "Todas Gerações",
+            "Gen I (Kanto) – 1996-1999",
+            "Gen II (Johto) – 1999-2002",
+            "Gen III (Hoenn) – 2002-2006",
+            "Gen IV (Sinnoh) – 2006-2010",
+            "Gen V (Unova) – 2010-2013",
+            "Gen VI (Kalos) – 2013-2016",
+            "Gen VII (Alola) – 2016-2019",
+            "Gen VIII (Galar) – 2019-2022",
+            "Gen IX (Paldea) – 2022-Hoje"
+        )
+
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, generations)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.generationFilterSpinner.adapter = adapter
+
+        binding.generationFilterSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                selectedGeneration = if (position == 0) null else position
+                applyFilters()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                selectedGeneration = null
+            }
+        }
+    }
+
+    // Aplicar todos os filtros combinados (busca + tipo + geração)
+    private fun applyFilters() {
+        val query = binding.searchEditText.text.toString().trim()
+
+        var filteredList = fullPokemonList
+
+        // Filtro por nome (busca)
+        if (query.isNotEmpty()) {
+            filteredList = filteredList.filter { pokemon ->
+                pokemon.name.contains(query, ignoreCase = true)
+            }
+        }
+
+        // Filtro por tipo
+        selectedType?.let { type ->
+            filteredList = filteredList.filter { pokemon ->
+                pokemon.types.any { it.equals(type, ignoreCase = true) }
+            }
+        }
+
+        // Filtro por geração
+        selectedGeneration?.let { gen ->
+            filteredList = filteredList.filter { pokemon ->
+                pokemon.generation == gen
+            }
+        }
+
+        // Atualizar adapter
+        (binding.recyclerView.adapter as? PokemonAdapter)?.submitList(filteredList)
     }
 
     override fun onStart() { super.onStart(); Log.d(tag, "onStart chamado") }
