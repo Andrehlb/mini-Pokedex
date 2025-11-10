@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity() {
 
         Log.d(tag, "onCreate chamado")
 
-        binding.searchEditText.requestFocus()
+        // binding.searchEditText.requestFocus()
 
         // Busca em tempo real (agora integrada com filtros)
         binding.searchEditText.addTextChangedListener(object : android.text.TextWatcher {
