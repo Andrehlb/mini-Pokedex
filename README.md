@@ -340,19 +340,17 @@ Este projeto é fornecido como parte do curso Venturus Native Android. Uso educa
 ### Tela de Splash
 <img src="assets/minipokedex-splashAbertura.jpeg" alt="Tela de abertura" width="300px" height="400px" />
 
-
 ### Tela de Loading/Carregamento/Espera
-![Loading](assets/minipokedex-loadspin.jpeg)
+<img src="assets/minipokedex-loadspin.jpeg" alt="Tela de Loading" width="300px" height="400px" />
 
 ### Tela de Lista com Busca
-![Lista de Pokémons](assets/minipokedex-lista.jpeg)
+<img src="assets/minipokedex-lista.jpeg" alt="Tela de Lista" width="300px" height="400px" />
 
 ### Filtro de Tipos
-![Filtros por Tipo](assets/minipokedex-tipos.jpeg)
+<img src="assets/minipokedex-tipos.jpeg" alt="Tela de Filtro Tipo" width="300px" height="400px" />
 
 ### Filtro de Geração
-![Filtros por Geração](assets/minipokedex-geracao.jpeg)
-
+<img src="assets/minipokedex-geracao.jpeg" alt="Tela de Filtro Geração" width="300px" height="400px" />
 
 ### Tela de Detalhes
-![Detalhes do Pokémon](assets/minipokedex-detalhesPokemonSelecionado.jpeg)
+<img src="assets/minipokedex-detalhesPokemonSelecionado.jpeg" alt="Tela de Detalhes" width="300px" height="400px" />
