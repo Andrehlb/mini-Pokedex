@@ -117,6 +117,20 @@
             app:lottie_loop="true"
             android:visibility="gone" />
 
+        <!-- TextView para mensagens de loading (inicialmente invisível) -->
+        <TextView
+            android:id="@+id/loadingMessageTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp"
+            android:textColor="?attr/colorPrimary"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/lottieLoading"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
         <!-- RecyclerView abaixo dos filtros -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
