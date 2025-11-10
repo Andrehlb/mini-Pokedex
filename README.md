@@ -106,7 +106,7 @@ O app requer **conexão com a internet** para consumir a **PokéAPI v2**:
 ## 📸 Screenshots / GIFs
 
 ### Tela de Splash
-<img src="assets/minipokedex-splashAbertura.jpeg" alt="Tela de abertura" width="100px" height="100px" />
+<img src="assets/minipokedex-splashAbertura.jpeg" alt="Tela de abertura" width="10px" height="10px" />
 
 
 ### Tela de Loading/Carregamento/Espera
