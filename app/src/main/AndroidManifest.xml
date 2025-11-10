@@ -13,15 +13,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MiniPokedex">
 
+        <!-- VideoIntroActivity é o ponto de entrada (LAUNCHER) -->
         <activity
-            android:name=".MainActivity"
+            android:name=".VideoIntroActivity"
             android:exported="true"
-            android:theme="@style/Theme.App.Starting"> <!-- Apply the splash screen theme -->
+            android:theme="@style/Theme.App.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- MainActivity agora é chamada após o vídeo -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:theme="@style/Theme.App.Starting" />
+
         <activity
             android:name=".DetailActivity"
             android:exported="false" />
