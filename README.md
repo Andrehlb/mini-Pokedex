@@ -106,16 +106,23 @@ O app requer **conexão com a internet** para consumir a **PokéAPI v2**:
 ## 📸 Screenshots / GIFs
 
 ### Tela de Splash
-![Splash Screen](assets/splash_screen.png)
+![Abertura](assets/minipokedex-splashAbertura.jpeg)
+
+### Tela de Loading/Carregamento/Espera
+![Loading](assets/minipokedex-loadspin.jpeg)
 
 ### Tela de Lista com Busca
-![Lista de Pokémons](assets/pokemon_list.png)
+![Lista de Pokémons](assets/minipokedex-lista.jpeg)
 
-### Filtros Ativos
-![Filtros por Tipo e Geração](assets/filters.png)
+### Filtro de Tipos
+![Filtros por Tipo](assets/minipokedex-tipos.jpeg)
+
+### Filtro de Geração
+![Filtros por Geração](assets/minipokedex-geracao.jpeg)
+
 
 ### Tela de Detalhes
-![Detalhes do Pokémon](assets/pokemon_detail.png)
+![Detalhes do Pokémon](assets/minipokedex-detalhesPokemonSelecionado.jpeg)
 
 ---
 
