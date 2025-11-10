@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
     // Mensagens de loading periódicas
     private val loadingMessages = listOf(
         "Chill, os Pokémon tão chegando! Aguarda aí.",
-        "Fica de olho, os Pokémon estão a caminho! Só mais um secinho.",
+        "Fica de olho, os Pokémon estão a caminho! Só mais um segundinho.",
         "Pokémon inbound! Relaxa que já vem.",
         "Hold on, os Pokémon estão carregando! Não vai embora ainda.",
         "Os Pokémon tão quase lá! Fica mais um pouquinho."
