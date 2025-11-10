@@ -103,30 +103,6 @@ O app requer **conexão com a internet** para consumir a **PokéAPI v2**:
 
 ---
 
-## 📸 Screenshots / GIFs
-
-### Tela de Splash
-<img src="assets/minipokedex-splashAbertura.jpeg" alt="Tela de abertura" width="10px" height="10px" />
-
-
-### Tela de Loading/Carregamento/Espera
-![Loading](assets/minipokedex-loadspin.jpeg)
-
-### Tela de Lista com Busca
-![Lista de Pokémons](assets/minipokedex-lista.jpeg)
-
-### Filtro de Tipos
-![Filtros por Tipo](assets/minipokedex-tipos.jpeg)
-
-### Filtro de Geração
-![Filtros por Geração](assets/minipokedex-geracao.jpeg)
-
-
-### Tela de Detalhes
-![Detalhes do Pokémon](assets/minipokedex-detalhesPokemonSelecionado.jpeg)
-
----
-
 ## Development Log - Sprints
 
 ### Sprint 1: Fundação e Estrutura Visual ✅ (Concluída)
@@ -355,3 +331,28 @@ Este projeto é fornecido como parte do curso Venturus Native Android. Uso educa
 
 **Desenvolvido com ❤️ por André Luiz Brbosa (Andrehlb)**  
 **Última atualização:** 09 de Novembro de 2025
+
+
+---
+
+## 📸 Screenshots / GIFs
+
+### Tela de Splash
+<img src="assets/minipokedex-splashAbertura.jpeg" alt="Tela de abertura" width="10px" height="10px" />
+
+
+### Tela de Loading/Carregamento/Espera
+![Loading](assets/minipokedex-loadspin.jpeg)
+
+### Tela de Lista com Busca
+![Lista de Pokémons](assets/minipokedex-lista.jpeg)
+
+### Filtro de Tipos
+![Filtros por Tipo](assets/minipokedex-tipos.jpeg)
+
+### Filtro de Geração
+![Filtros por Geração](assets/minipokedex-geracao.jpeg)
+
+
+### Tela de Detalhes
+![Detalhes do Pokémon](assets/minipokedex-detalhesPokemonSelecionado.jpeg)
