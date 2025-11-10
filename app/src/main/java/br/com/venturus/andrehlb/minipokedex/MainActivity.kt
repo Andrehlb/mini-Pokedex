@@ -2,19 +2,16 @@ package br.com.venturus.andrehlb.minipokedex
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,12 +25,37 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: PokemonListViewModel
     private val tag = "MainActivity"
 
-    // NOVO: Lista completa de Pokemon (cache para filtros)
+    // Lista completa de Pokemon (cache para filtros)
     private var fullPokemonList: List<Pokemon> = emptyList()
 
-    // NOVO: Filtros selecionados
+    // Variáveis para armazenar os Filtros selecionados
     private var selectedType: String? = null
     private var selectedGeneration: Int? = null
+
+    // Mensagens de loading periódicas
+    private val loadingMessages = listOf(
+        "Chill, os Pokémon tão chegando! Aguarda aí.",
+        "Fica de olho, os Pokémon estão a caminho! Só mais um secinho.",
+        "Pokémon inbound! Relaxa que já vem.",
+        "Hold on, os Pokémon estão carregando! Não vai embora ainda.",
+        "Os Pokémon tão quase lá! Fica mais um pouquinho."
+    )
+    private var messageIndex = 0
+    private val handler = Handler(Looper.getMainLooper())
+    private val updateMessageRunnable = object : Runnable {
+        override fun run() {
+            if (messageIndex < loadingMessages.size) {
+                binding.loadingMessageTextView.text = loadingMessages[messageIndex]
+                binding.loadingMessageTextView.visibility = View.VISIBLE
+                messageIndex++
+                handler.postDelayed(this, 7000) // A cada 7 segundos
+            } else {
+                // Reinicia se acabar as mensagens
+                messageIndex = 0
+                handler.postDelayed(this, 7000)
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
@@ -68,9 +90,15 @@ class MainActivity : AppCompatActivity() {
             if (isLoading) {
                 binding.lottieLoading.visibility = View.VISIBLE
                 binding.lottieLoading.playAnimation()
+                // NOVO: Inicia mensagens periódicas
+                messageIndex = 0
+                handler.post(updateMessageRunnable)
             } else {
                 binding.lottieLoading.pauseAnimation()
                 binding.lottieLoading.visibility = View.GONE
+                // NOVO: Para mensagens e esconde TextView
+                handler.removeCallbacks(updateMessageRunnable)
+                binding.loadingMessageTextView.visibility = View.GONE
             }
         }
 
