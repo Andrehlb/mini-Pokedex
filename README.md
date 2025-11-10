@@ -338,7 +338,7 @@ Este projeto é fornecido como parte do curso Venturus Native Android. Uso educa
 ## 📸 Screenshots / GIFs
 
 ### Tela de Splash
-<img src="assets/minipokedex-splashAbertura.jpeg" alt="Tela de abertura" width="400px" height="400px" />
+<img src="assets/minipokedex-splashAbertura.jpeg" alt="Tela de abertura" width="300px" height="400px" />
 
 
 ### Tela de Loading/Carregamento/Espera
